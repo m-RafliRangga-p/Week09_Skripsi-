@@ -1,0 +1,47 @@
+/**
+* @license
+*
+* Font Family: Clash Display
+* Designed by: Indian Type Foundry
+* URL: https://www.fontshare.com/fonts/clash-display
+* © 2024 Indian Type Foundry
+*
+* Clash Display Extralight 
+* Clash Display Light 
+* Clash Display Regular 
+* Clash Display Medium 
+* Clash Display Semibold 
+* Clash Display Bold 
+* Clash Display Variable (Variable font)
+
+*
+*/
+
+@font-face {
+  font-family: 'Poppins-Variable'; /* Memberikan nama untuk font-family yang di import */
+  src: url('../fonts/Poppins-Variable.woff2') format('woff2'), /* Mengambil sumber font */
+       url('../fonts/Poppins-Variable.woff') format('woff'), 
+       url('../fonts/Poppins-Variable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
+  /* Nilai swap memastikan bahwa font fallback (font bawaan browser) digunakan sementara font kustom sedang dimuat, dan setelah font kustom sudah siap, font kustom akan langsung ditampilkan. */
+  font-style: normal;
+}
+/**
+* This is a variable font
+* You can control variable axes as shown below:
+* font-variation-settings: wght 100.0;
+*
+* available axes:
+'wght' (range from 100.0 to 900.0
+*/
+@font-face {
+  font-family: 'Poppins-VariableItalic';
+  src: url('../fonts/Poppins-VariableItalic.woff2') format('woff2'),
+       url('../fonts/Poppins-VariableItalic.woff') format('woff'),
+       url('../fonts/Poppins-VariableItalic.ttf') format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: italic;
+}
+

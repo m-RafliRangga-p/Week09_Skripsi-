@@ -1,0 +1,787 @@
+/* CATATAN:
+!important digunakan untuk memastikan efek css bekerja, karena ada beberapa efek yang tidak bekerja pada bootstrap */
+
+/* FONT IMPORT */
+@import url(../css/Poppins.css); /* Mengambil font family dari file Poppins.css */
+
+/* Variabel yang sering digunakan dalam komponen website */
+:root {
+    --c-dark: #212529; /* Variabel untuk warna standar hitam */
+    --c-brand: #33b5ff; /* Variabel untuk warna standar hero color brand */
+    --c-brand-rgb: 51, 181, 255; /* Variabel untuk warna standar hero color brand dalam rgb*/
+    --c-white-rgb: 255, 255, 255;
+    --c-dark-rgb: 33, 37, 41;
+    --c-body: #727272; /* Variabel untuk warna standar body (abu-abu) */
+    --box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.08); /* Variabel standar untuk memberikan box-shadow */
+    --transition: all 0.5s ease; /* Variabel standar untuk transisi dalam item */
+    --font-base: "Poppins-Variable", sans-serif; /* Variabel standar untuk font-family yang digunakan */
+}
+
+/* CSS Default for common component */
+
+/* CSS reset dan pengaturan font family */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: var(--font-base);
+}
+
+/* Mengatur line-height di seluruh body dan warna dasar tulisan untuk semua elemen di body*/
+body{
+    line-height: 1.7 !important;
+    color: var(--c-body) !important;
+    font-size: 16px !important;
+}
+
+em{
+    font-weight: 200 !important;
+    font-size: 18px;
+}
+
+hr{
+    background-color: var(--c-dark) !important;
+}
+
+.box-shadows{
+    box-shadow: var(--box-shadow);
+}
+
+/* Mengatur seluruh elemen heading agar font-nya menjadi bold dan warna dasarnya sesuai variabel warna dark */
+h1,h2,h3,h4,h5,h6,
+.h1,.h2,.h3,.h4,.h5,.h6{
+    font-weight: 600 !important;
+    color: var(--c-dark);
+}
+
+/* Mengatur default style untuk tag a baik ketika di hover maupun tidak */
+a{
+    text-decoration: none !important;
+}
+
+a:hover{
+    color: var(--c-brand) !important;
+    transition: var(--transition);   
+}
+
+/* Membuat gambar agar memiliki lebar yang selalu menyesuaikan dengan lebar containernya */
+/* Dimana jika gambar lebih besar dari container, maka gambar akan diperkecil menyesuaikan lebar containernya */
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+}
+
+/* Memberikan jarak antar section */
+.section-padding{
+    padding-top: 120px;
+}
+
+/* Memberikan efek warna yang berbeda pada item yang diapit tag span */
+span {
+    color: var(--c-brand);
+}
+
+/* IMAGE ZOOM digunakan untuk membuat efek memberpesar gambar 110% ketika gambar di hover 
+   Area gambar yang keluar dari container image-zoom akan disembunyikan (hidden)*/
+.image-zoom{
+    position: relative;
+    overflow: hidden; /* Menyembunyikan bagian gambar yang keluar dari batas elemen */
+}
+
+.image-zoom-wrapper{
+    overflow: hidden;
+    position: relative;
+}
+
+.image-zoom-wrapper img{
+    transition: var(--transition);
+}
+
+.image-zoom:hover .image-zoom-wrapper img{
+    transform: scale(1.1); /* Membuat gambar diperbesar hingga 110% dari ukuran aslinya (efek zoom) */
+}
+
+/* Membuat style standar untuk button brand yang akan digunakan pada halaman website */
+.btn{
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    border-radius: 6px !important;
+    padding: 10px 24px;
+}
+
+.btn-brand{
+    background-color: var(--c-dark) !important;
+    border-color: var(--c-dark);
+    color: #ffffff !important;
+}
+
+.btn-brand:hover{
+    background-color: var(--c-brand) !important;
+    border-color: var(--c-brand);
+    color: white !important;
+}
+
+
+/* NAVBAR */
+/* Memberikan efek box shadow di bagian bawah navbar */
+.navbar{
+    box-shadow: var(--box-shadow);
+}
+
+/* Mengatur tampilan tulisan dan warna untuk item nav-link */
+.navbar-nav .nav-link{
+    font-weight: 400 !important;
+    color: var(--c-dark);
+    text-transform: uppercase;
+    margin: 10px;
+    padding: 10px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+/* Mengatur tampilan untuk nav-link dengan status active dan ketika di hover*/
+.navbar-nav .nav-link.active{
+    color: var(--c-brand) !important;
+    font-weight: 700 !important;
+}
+
+/* Media Query for Hover */
+@media (min-width: 768px) {
+    .navbar-nav .nav-link:hover{
+        background-color: var(--c-brand);
+        color: white !important;
+        border-radius: 5px;
+    }
+}
+
+/* Menambahkan icon hamburger menu karena terdapat masalah dimana icon tidak tampil pada standar bootstarp */
+.navbar-toggler-icon {
+    background-image: url("https://cdn-icons-png.flaticon.com/512/1828/1828859.png"); /* Menambahkan URL ikon hamburger manual */
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+}
+
+/* Mengatur ukuran logo pada navbar */
+.logo {
+    width: 60px;
+}
+
+/* Mengatur tampilan button login dan register, dimana button login akan berwarna putih dan memiliki border
+   Sedangkan button register akan berwarna biru dan tanpa border*/
+.btn {
+    padding: 10px;
+    margin: 5px;
+    background-color: none;
+    border: none;
+}
+  
+.btn-login {
+    background-color: white;
+    border: 1px solid var(--c-body) !important;
+}
+  
+.btn-login > a {
+    text-transform: uppercase;
+    color: var(--c-brand);
+    font-size: 14px;
+}
+
+.btn-login > a:hover {
+    color: var(--c-brand);
+}
+  
+.btn-register {
+    background-color: var(--c-brand) !important;
+}
+  
+.btn-register > a {
+    text-transform: uppercase;
+    color: white;
+    font-size: 14px;
+}
+
+.btn-register > a:hover {
+    color: white !important;
+}
+
+/* HERO or JUMBOTRON */
+/* Memberikan background image pada jumbotron */
+#hero{
+    background: linear-gradient(rgba(var(--c-dark-rgb),.5), rgba(var(--c-dark-rgb),.4)), url(../img/hero.png);
+    /* Mengatur latar belakang dengan gradien linier transparan di atas gambar dimana Warna awal gradien dengan transparansi 50%
+    dan Warna akhir gradien dengan transparansi 40% */
+    background-position: center; /* Memposisikan latar belakang di tengah elemen secara horizontal dan vertikal */
+    background-size: cover; /* Mengatur ukuran latar belakang agar menutupi seluruh area elemen tanpa mengubah rasio aspek */
+}
+
+#hero h5{
+    font-weight: 400 !important;
+}
+
+.btn-hero{
+    background-color: var(--c-brand) !important;
+}
+
+.btn-hero:hover{
+    background-color: var(--c-brand) !important;
+    color: white !important;
+}
+
+.jumbotron {
+    max-width: 95%;
+    margin: auto;
+    border-radius: 10px;
+}
+
+#hero-about{
+    background: linear-gradient(rgba(var(--c-dark-rgb),.5), rgba(var(--c-dark-rgb),.4)), url(../img/hero-about.png);
+    /* Mengatur latar belakang dengan gradien linier transparan di atas gambar dimana Warna awal gradien dengan transparansi 50%
+    dan Warna akhir gradien dengan transparansi 40% */
+    background-position: center; /* Memposisikan latar belakang di tengah elemen secara horizontal dan vertikal */
+    background-size: cover; /* Mengatur ukuran latar belakang agar menutupi seluruh area elemen tanpa mengubah rasio aspek */
+}
+
+/* SECTION TITLE for SECTION ABOUT US */
+/* Memberikan margin untuk elemen section-tittle */
+.section-title{
+    margin-bottom: 60px;
+}
+
+/* Memberikan style untuk membuat garis di bawah section tittle */
+.section-title .line{
+    width: 90px;
+    height: 4px;
+    background-color: var(--c-brand);
+    margin: 16px auto 24px; /* Margin atas 15px, kiri kanan auto (posisi pasti di tengah layar), bawah 24px */
+}
+
+.section-title p{
+    max-width: 500px; /* Membatasi lebar maksimum paragraf menjadi 500 piksel */
+    margin: auto;
+}
+
+/* About Us */
+.point-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 60px; /* Adjust to move circles down */
+}
+
+.circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: var(--c-brand);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    margin-right: 40px; /* Adjust to shift left section right */
+    position: relative;
+}
+
+.circle:before {
+    content: '';
+    width: 2px;
+    height: 80px; /* Adjust height to connect circles better */
+    position: absolute;
+    top: 100px; /* Adjusted to connect circles */
+    left: 50%;
+    transform: translateX(-50%);
+    border-right: 2px dashed var(--c-dark); /* Dashed line */
+}
+
+.point-item:last-child .circle:before {
+    display: none; /* Remove line after the last circle */
+}
+
+.circle i {
+    font-size: 40px;
+    color: white;
+}
+
+.point-item strong{
+    color: var(--c-dark);
+}
+
+.video-thumbnail {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+}
+  
+  /* Then style the iframe to fit in the container div with full height and width */
+.responsive-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+/* SECTION WHY CHOOSE US */
+#why .container {
+    /* background-color: #f5f8fa; */
+    background-color: #F0F0F0;
+    border-radius: 3%;
+    padding: 20px; /* Menambahkan padding agar konten tidak terlalu mepet dengan batas kontainer */
+}
+
+/* Kontainer Gambar */
+.image-container {
+    position: relative; /* Mengatur posisi kontainer secara relatif, digunakan untuk penempatan elemen-elemen child dengan posisi absolute */
+    width: 100%;
+    height: auto;
+}
+
+.image-container img {
+    max-width: 600px;
+    max-height: 400px;
+    width: 100%; /* Mengatur agar gambar selalu responsif dan menyesuaikan lebar kontainer */
+    height: auto; /* Menjaga rasio aspek gambar */
+}
+
+/* Kontainer Teks */
+.text-box {
+    position: absolute; /* Teks akan diposisikan secara absolute di dalam kontainer gambar sehingga posisi elemen dapat di atur */
+    top: 50%; /* Posisi vertikal teks berada di tengah (50% dari atas) */
+    left: 55%; /* Posisi horizontal teks berada di 55% dari sisi kiri, sehingga text-box berada di sisi kanan gambar */
+    transform: translate(-20%, -50%); /* Memastikan teks berpusat pada posisi yang tepat */
+    background-color: white; /* Memberikan warna background dengan sedikit transparansi */
+    border-radius: 10px;
+    width: 50%; /* Mengatur lebar teks agar menempati setengah dari kontainer */
+    padding: 20px; /* Menambahkan padding agar teks tidak terlalu dekat dengan batas kotak */
+}
+
+.text-box p {
+    font-size: 16px;
+}
+
+.text-box h4 {
+    color: var(--c-dark);
+}
+
+#right{
+    display: flex; /* Menambahkan flexbox untuk memudahkan pengaturan posisi gambar */
+    justify-content: flex-end; /* Mengatur elemen flex agar ditempatkan di ujung kanan kontainer */
+}
+
+#left {
+    left: 15%; /* Posisi horizontal teks berada di 15% dari sisi kiri, sehingga text-box berada di sisi kiri gambar */
+    background-color: #d5f0ff !important;
+}
+
+/* Media Query untuk Layar Kecil */
+@media (max-width: 768px) {
+    .image-container {
+        justify-content: center; /* Tetap memposisikan gambar di tengah kontainer pada layar kecil */
+    }
+
+    .image-container img {
+        max-width: 100%;  /* Gambar akan mengambil lebar penuh dari kontainer pada layar kecil */
+        height: auto; /* Menjaga rasio aspek gambar */
+    }
+
+    .text-box {
+        position: static; /* Menghapus positioning absolute pada layar kecil */
+        transform: none; /* Menghilangkan transformasi posisi text-box */
+        width: 100%; /* Mengatur lebar teks menjadi 100% dari kontainer pada layar kecil */
+        margin-top: 15px; /* Menambahkan jarak di antara gambar dan teks */
+        /* Efeknya adalah di layar kecil posisi text-box akan berada di bawah gambar */
+    }
+
+    .text-box h4, .text-box p {
+        text-align: center;  /* Teks dipusatkan untuk meningkatkan keterbacaan pada layar kecil */
+    }
+}
+
+/* SECTION Mentor */
+/* Mengubah sedikit tampilan standar dari component card bootstarp */
+.card{
+    border: none !important;
+    background-color: #F0F0F0 !important;
+    flex: 1 1 300px; /* Menetapkan dasar flex untuk card */
+    display: flex; /* Menjadikan card fleksibel */
+    flex-direction: column; /* Menyusun isi card secara vertikal */
+    justify-content: space-between; /* Memastikan semua konten terdistribusi dengan baik */
+    height: 100%; /* Memastikan card mengambil tinggi penuh dari container */
+    font-size: 16px !important;
+}
+
+@media (max-width: 768px) {
+    .card{
+        width: 100% !important;
+    }
+}
+
+.card-body {
+    flex-grow: 1; /* Pastikan card body mengambil ruang yang tersisa */
+    display: flex; /* Gunakan flex untuk card body */
+    flex-direction: column; /* Atur konten dalam arah vertikal */
+    justify-content: flex-start; /* Sebar konten agar elemen bawah tetap berada di bawah */
+}
+  
+
+/* Memberikan style pada icon star pada bagian rating */
+.rating i {
+    color: #fbc02d; /* Warna bintang */
+    font-size: 1.2rem; /* Ukuran font 1.2 kali ukuran font root atau parent*/
+    margin-right: 0.2rem;
+}
+
+.rating span {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.price span {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.rating i.bag{
+    color: var(--c-brand);
+}
+
+.rating i.detail {
+    color: var(--c-dark) !important;
+}
+
+.see-more a{
+    font-size: 18px;
+    color: var(--c-dark);
+    text-decoration: underline !important;
+}
+
+.detail-icon span{
+    font-weight: 400;
+}
+
+/* SECTION Courses */
+/* Memberikan style yang sesuai pada bagian card-promo */
+.card-promo{
+    background-color: var(--c-brand) !important;
+    color: white !important;
+}
+
+.card-promo .card-title{
+    color: white;
+    font-weight: 800;
+    font-size: 24px;
+}
+
+/* SECTION Testimoni */
+/* Memberikan style untuk bagian box/container yang membungkus testimoni */
+.testimonial-box {
+    background-color: #ebf8ff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 768px) {
+    .testimonial-box {
+        padding: 120px;
+    }
+}
+
+/* Mengatur style untuk masing-masing tulisan yang ada dalam testimonial-box */
+.testimonial-text {
+    font-size: 18px;
+    font-style: italic; /* Membuat font bercetak miring */
+    margin-bottom: 20px;
+}
+
+.testimonial-author {
+    text-align: right; /* Memposisikan tulisan agar berada di sisi kanan */
+}
+
+.testimonial-name {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.testimonial-position {
+    font-size: 16px;
+    color: #666;
+}
+
+/* FOOTER */
+footer{
+    padding-top: 70px;
+}
+
+.footer-top{
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, .1); /* Membuat border hanya pada bagian bawah saja untuk menghasilkan efek garis pemisah antara footer top dan bottom  */
+}
+
+.footer-bottom{
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+footer li,
+footer p,
+footer a{
+    color: rgba(255, 255, 255, .7);
+}
+
+footer ul{
+    list-style: none; /* Menghilangkan style bawaan dari elemen ul  */
+    padding: 0;
+}
+
+/* Membuat style untuk garis pada elemen footer */
+footer .line{
+    width: 40px;
+    height: 4px;
+    background-color: var(--c-brand);
+    margin-top: 12px;
+    margin-bottom: 24px;
+    margin: 12px auto 24px;
+}
+
+.social-icons a{
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, .1);
+    border-radius: 100px;
+}
+
+.social-icons a:hover{
+    background-color: var(--c-brand);
+    color: white !important;
+}
+
+.social-icons i{
+    font-size: 23px;
+}
+
+.team a{
+    width: 42px;
+    height: 42px;
+    background-color: var(--c-dark);
+    color: white;
+}
+
+.team i{
+    font-size: 24px;
+}
+
+/* PAGE FAQ */
+.faq-item {
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #f5f8fa;
+    transition: background-color 0.5s ease;
+} 
+  
+.faq-question {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+    cursor: pointer; /* Menampilkan kursor pointer (seperti link) saat mouse berada di atas pertanyaan */
+    color: var(--c-dark);
+}
+  
+.faq-question:hover {
+    color: var(--c-brand);
+}
+  
+.faq-answer {
+    font-size: 16px;
+    color: var(--c-dark);
+    margin-top: 10px;
+    text-align: justify;
+}
+  
+.faq-separator{
+    border: 1px solid var(--c-dark);
+}
+  
+/* FORM is invalid */
+.is-invalid {
+    border-color: #dc3545;
+    box-shadow: 0 0 5px rgba(220, 53, 69, 0.5);
+}
+
+/* STYLE FOR ABOUT PAGE */
+.iconbox{
+    width: 70px;
+    height: 70px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(var(--c-brand-rgb),.1);
+    color: var(--c-brand);
+    font-size: 34px;
+    flex: none;
+}
+
+/*---------------------------------------
+   Speakers section              
+-----------------------------------------*/
+#speakers {
+    background: white;
+}
+
+#speakers h3 {
+    font-size: 17px;
+    margin-bottom: 0px;
+    text-align: center;
+    font-weight: 600 !important;
+}
+
+#speakers h6 {
+  color: #666;
+  margin-top: 4px;
+  text-align: center;
+  font-weight: 400 !important;
+}
+
+#speakers img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+#speakers .col-md-3 {
+    display: block;
+    width: 100%;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    margin-bottom: 22px;
+}
+
+#speakers .speakers-wrapper {
+    background: #F0F0F0 ;
+    padding-bottom: 22px;
+}
+
+/* Modal for Mentor Page */
+.nama-dosen h5{
+    font-weight: 400 !important;
+}
+
+.hr-modal {
+    width: 100%; /* Mengatur lebar garis */
+    border-top: 2px solid var(--c-dark); /* Garis dengan ketebalan dan warna */
+    margin: 10px auto; /* Menempatkan garis di tengah secara horizontal */
+}
+
+.keterangan-item p{
+    text-align: justify !important;
+    margin-left: 5%;
+}
+
+.keterangan-list p{
+    margin-left: 0 !important;
+}
+
+.skill-dosen span {
+    color: var(--c-dark);
+    background-color: #d5f0ff;
+    border-radius: 25px;
+    padding: 0 10px;
+    width: auto; /* Tentukan ukuran tetap untuk lingkaran */
+    height: 30px;
+    display: inline-flex; /* Memastikan elemen berada dalam satu baris dan terpusat */
+    justify-content: center;
+    align-items: center;
+    margin: 5px; /* Tambahkan spasi antar lingkaran */
+    font-weight: 500 !important;
+}
+
+@media (min-width: 768px) {
+    .modal-lg{
+        width: 720px !important;
+    }
+    .hr-modal{
+        width: 88% !important;
+    }
+}
+
+/* Detail Courses */
+.deskripsi-course p{
+    text-align: justify;
+}
+
+.deskripsi-course,.accordion-detail {
+    background-color: #d5f0ff;
+    border-radius: 10px;
+}
+
+
+.accordion-detail hr.accordion{
+    width: 100%; /* Mengatur lebar garis */
+    border-top: 3px solid var(--c-dark) !important; /* Garis dengan ketebalan dan warna */
+    margin: 10px auto;
+}
+
+.accordion-body a{
+    color: var(--c-dark);
+    text-decoration: underline !important;
+}
+
+.accordion-button {
+    background-color: #d5f0ff !important; /* Menghapus background pada accordion button */
+}
+
+.accordion-body {
+    background-color: #d5f0ff !important; /* Menghapus background pada isi accordion */
+}
+
+.accordion-item {
+    border: none !important;
+}
+
+/* Menghapus border pada collapse accordion body */
+.accordion-collapse {
+    border: none !important;
+    border-bottom: 2px solid var(--c-body) !important;
+}
+
+/* Menghapus border dari heading accordion */
+.accordion-header {
+    border: none !important;
+    border-bottom: 2px solid var(--c-body) !important;
+}
+
+.accordion-button {
+    font-weight: bold; /* Membuat teks menjadi tebal */
+    color: var(--c-dark);
+}
+
+.accordion-button:not(.collapsed) {
+    color: var(--c-dark) !important; /* Mencegah perubahan warna saat tombol di klik */
+}
+
+.accordion-button:focus {
+    box-shadow: none !important; /* Menghilangkan efek bayangan saat fokus */
+}
+
+@media (max-width: 768px) {
+    .logo-placeholder{
+      display: none;
+    }
+}
+
+
