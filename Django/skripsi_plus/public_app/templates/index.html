@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'css/style.css'%}" />
+    <link rel="icon" href="{% static 'img/Light-modified.png'%}" type="image/x-icon" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+    />
+
+    <!-- CDN for Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <!-- Masih menggunakan navbar standar dari bootstrap dengan 
+      penambahan logo berupa image dan 2 buah button serta custom style -->
+    <nav class="navbar navbar-expand-lg bg-white sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <img
+            class="logo"
+            src="{% static 'img/Light-removebg-preview.png'%}"
+            alt="logo-Skripsi+"
+          />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#Nav"
+          aria-controls="Nav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="Nav">
+          <ul class="navbar-nav m-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/mentors">Mentors</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="courses">Courses</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="faq">FaQ's</a>
+            </li>
+          </ul>
+          <button class="btn btn-login">
+            <a href="/sign-in">Login</a>
+          </button>
+          <button class="btn btn-register">
+            <a href="/sign-up">Register</a>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Membuat bagian main dari website dengan beberapa section -->
+    <main>
+      <!-- HERO or JUMBOTRON -->
+      <!-- Membuat jumbotron yang memiliki tinggi minimal sesuai tinggi dari layar -->
+      <section
+        id="hero"
+        class="jumbotron min-vh-100 d-flex align-items-center text-center mt-4"
+      >
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <h1 class="text-uppercase text-white display-1">
+                Welcome to <span>Skr</span>ipsi<span><sup>+</sup></span>
+              </h1>
+              <h5 class="text-uppercase text-white mt-3 mb-4">
+                Your Solution to Complete Your Thesis
+              </h5>
+              <div>
+                <a href="#" class="btn btn-hero me-2 text-white">Get Started</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <!-- Membuat section untuk bagian about us -->
+      <!-- Pada layar besar urutan yang ditampilkan adalah gambar berada di sebelah kiri dan tulisan berada di kanan 
+      Sedangkan pada layar kecil maka, tulisan akan berada di atas sedangkan gambar akan berada di bawah -->
+      <section id="about" class="section-padding">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 text-center">
+              <div class="section-title">
+                <h1 class="display-4">About Us</h1>
+                <div class="line"></div>
+                <p><em>Your Solution to Complete Your Thesis</em></p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <!-- Left side with points -->
+            <div class="col-md-5">
+              <div class="point-item">
+                <div class="circle">
+                  <i class="ri-line-chart-fill"></i>
+                  <!-- Icon inside the circle -->
+                </div>
+                <div><strong>FLEXIBILITY</strong></div>
+              </div>
+              <div class="point-item">
+                <div class="circle">
+                  <i class="ri-shake-hands-fill"></i>
+                </div>
+                <div><strong>RESPONSIBILITY</strong></div>
+              </div>
+              <div class="point-item">
+                <div class="circle">
+                  <i class="ri-exchange-2-fill"></i>
+                </div>
+                <div><strong>ADAPTABILITY</strong></div>
+              </div>
+            </div>
+
+            <!-- Right side with embedded video -->
+            <div class="col-md-7">
+              <div class="video-thumbnail">
+                <iframe
+                  class="responsive-iframe"
+                  src="https://www.youtube.com/embed/y0HFDsyjSlY?si=FR8bErS94SCFNmRE"
+                >
+                </iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION for Why Choose Us -->
+      <section id="why" class="section-padding">
+        <div class="container">
+          <div class="row pt-4">
+            <div class="col-12 text-center">
+              <div class="section-title">
+                <h1 class="display-4">Why Choose Us?</h1>
+                <div class="line"></div>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-lg-12 position-relative">
+              <div class="image-container">
+                <img
+                  src="{% static 'img/courses.png'%}"
+                  alt="Course Pilihan"
+                  class="img-fluid"
+                />
+              </div>
+              <div class="text-box bg-light shadow p-4">
+                <h4>Course Pilihan</h4>
+                <p>
+                  Course kami membantu mahasiswa menyelesaikan skripsi secara
+                  efektif dan efisien. Dengan materi lengkap, bimbingan ahli,
+                  dan akses ke sumber daya terbaru, mahasiswa siap menghadapi
+                  setiap tahap penyusunan skripsi dengan percaya diri.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center pt-4">
+            <div class="col-lg-12 position-relative">
+              <div id="right" class="image-container">
+                <img
+                  src="{% static 'img/friendly-lecturer.png'%}"
+                  alt="Dosen Pembimbing Ramah"
+                  class="img-fluid"
+                />
+              </div>
+              <div id="left" class="text-box bg-light shadow p-4">
+                <h4>Dosen Pembimbing Ramah</h4>
+                <p>
+                  Tim dosen kami terdiri dari profesional yang tidak hanya
+                  kompeten, tetapi juga ramah dan mudah diakses. Dosen-dosen
+                  kami siap mendengarkan ide dan tantangan Anda, serta
+                  memberikan masukan yang konstruktif sehingga selama proses
+                  bimbingan Anda akan merasa didukung dan termotivasi untuk
+                  mencapai tujuan akademik Anda.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center pt-4 pb-4">
+            <div class="col-lg-12 position-relative">
+              <div class="image-container">
+                <img
+                  src="{% static 'img/schedule.png'%}"
+                  alt="Bimbingan Fleksibel"
+                  class="img-fluid"
+                />
+              </div>
+              <div class="text-box bg-light shadow p-4">
+                <h4>Bimbingan Fleksibel</h4>
+                <p>
+                  Kami mengedepankan bimbingan fleksibel untuk mendukung
+                  mahasiswa dalam proses penyusunan skripsi. Kami memahami bahwa
+                  setiap mahasiswa memiliki komitmen dan jadwal yang berbeda,
+                  sehingga bimbingan yang kami tawarkan dirancang untuk
+                  memberikan kenyamanan dan efektivitas dalam belajar
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION for OUR MENTOR -->
+      <section id="mentor" class="section-padding">
+        <div class="container">
+          <div class="row pt-4">
+            <div class="col-12 text-center">
+              <div class="section-title">
+                <h1 class="display-4">Meet Our Mentor</h1>
+                <div class="line"></div>
+              </div>
+              <div
+                class="d-flex me-lg-5 text-md-center justify-content-end see-more"
+              >
+                <a class="me-lg-4" href="pages/mentors.html">See More</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Wrapper untuk Card -->
+          <div class="row d-flex justify-content-center align-items-center">
+            <!-- Card Pertama -->
+            <div class="col-lg-4 col-md-6 mt-3">
+              <div class="card" style="width: 22rem">
+                <div class="image-zoom">
+                  <div class="image-zoom-wrapper">
+                    <img
+                      src="{% static 'img/William-John.png'%}"
+                      class="card-img-top"
+                      alt="Mentor 1"
+                    />
+                  </div>
+                </div>
+                <div class="card-body text-center">
+                  <h5 class="card-title">William John</h5>
+                  <p class="card-text">Data Science</p>
+                  <div
+                    class="d-flex justify-content-between ms-3 me-3 align-items-center"
+                  >
+                    <div class="rating d-flex align-items-center">
+                      <i class="bi bi-star-fill"></i>
+                      <span class="ms-1">4.9</span>
+                    </div>
+                    <div class="rating d-flex align-items-center">
+                      <i class="ri-briefcase-4-fill bag"></i>
+                      <span class="ms-1">Experience</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card Kedua -->
+            <div class="col-lg-4 col-md-6 mt-3">
+              <div class="card" style="width: 22rem">
+                <div class="image-zoom">
+                  <div class="image-zoom-wrapper">
+                    <img
+                      src="{% static 'img/Monica-Sephani.png'%}"
+                      class="card-img-top"
+                      alt="Mentor 2"
+                    />
+                  </div>
+                </div>
+                <div class="card-body text-center">
+                  <h5 class="card-title">Monica Sephani</h5>
+                  <p class="card-text">Digital Business</p>
+                  <div
+                    class="d-flex justify-content-between ms-3 me-3 align-items-center"
+                  >
+                    <div class="rating d-flex align-items-center">
+                      <i class="bi bi-star-fill"></i>
+                      <span class="ms-1">4.9</span>
+                    </div>
+                    <div class="rating d-flex align-items-center">
+                      <i class="ri-briefcase-4-fill bag"></i>
+                      <span class="ms-1">Experience</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card Ketiga -->
+            <div class="col-lg-4 col-md-6 mt-3">
+              <div class="card" style="width: 22rem">
+                <div class="image-zoom">
+                  <div class="image-zoom-wrapper">
+                    <img
+                      src="{% static 'img/River-Scott.png'%}"
+                      class="card-img-top"
+                      alt="Mentor 3"
+                    />
+                  </div>
+                </div>
+                <div class="card-body text-center">
+                  <h5 class="card-title">River Scott</h5>
+                  <p class="card-text">Neurology</p>
+                  <div
+                    class="d-flex justify-content-between ms-3 me-3 align-items-center"
+                  >
+                    <div class="rating d-flex align-items-center">
+                      <i class="bi bi-star-fill"></i>
+                      <span class="ms-1">4.9</span>
+                    </div>
+                    <div class="rating d-flex align-items-center">
+                      <i class="ri-briefcase-4-fill bag"></i>
+                      <span class="ms-1">Experience</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION for OUR COURSES -->
+      <!-- Karena strukturnya mirip, maka section ini hanya copy paste dan seditik penyesuaian dari section mentor -->
+      <section id="mentor" class="section-padding">
+        <div class="container">
+          <div class="row pt-4">
+            <div class="col-12 text-center">
+              <div class="section-title">
+                <h1 class="display-4">Choose Your Course</h1>
+                <div class="line"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Wrapper untuk Card -->
+          <div class="row">
+            <!-- Card Pertama -->
+            <div class="col-lg-4 col-md-6 mt-3">
+              <div class="card" style="width: 22rem">
+                <div class="image-zoom">
+                  <div class="image-zoom-wrapper">
+                    <img
+                      src="{% static 'img/programming.png'%}"
+                      class="card-img-top"
+                      alt="Course 1"
+                    />
+                  </div>
+                </div>
+                <div class="card-body text-center">
+                  <h5 class="card-title">Web Programming</h5>
+                  <p class="card-text">
+                    Course ini memberikan pengenalan komprehensif tentang
+                    pemrograman web, mencakup pengembangan front-end dan
+                    back-end.
+                  </p>
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <div class="rating d-flex align-items-center">
+                      <span class="ml-2">IDR 500,000</span>
+                    </div>
+                    <a href="#" class="btn btn-brand">Beli</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card Kedua -->
+            <div class="col-lg-4 col-md-6 mt-3">
+              <div class="card" style="width: 22rem">
+                <div class="image-zoom">
+                  <div class="image-zoom-wrapper">
+                    <img
+                      src="{% static 'img/skripsi.png'%}"
+                      class="card-img-top"
+                      alt="Course 2"
+                    />
+                  </div>
+                </div>
+                <div class="card-body text-center">
+                  <h5 class="card-title">Penyusunan Skripsi</h5>
+                  <p class="card-text">
+                    Course ini memberikan pengenalan komprehensif tentang cara
+                    menyusun skripsi yang baik, mencakup tata cara penulisan
+                    skripsi.
+                  </p>
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <div class="rating d-flex align-items-center">
+                      <span class="ml-2">IDR 500,000</span>
+                    </div>
+                    <a href="#" class="btn btn-brand">Beli</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card Ketiga -->
+            <div class="col-lg-4 col-md-6 mt-3">
+              <div class="card" style="width: 22rem">
+                <div class="image-zoom">
+                  <div class="image-zoom-wrapper">
+                    <img
+                      src="{% static 'img/jaringan.png'%}"
+                      class="card-img-top"
+                      alt="Course 3"
+                    />
+                  </div>
+                </div>
+                <div class="card-body text-center">
+                  <h5 class="card-title">Komputer & Jaringan</h5>
+                  <p class="card-text">
+                    Course ini memberikan pengenalan komprehensif tentang proyek
+                    dalam bidang komputer dan jaringan yang dapat menjadi bahan
+                    skripsi.
+                  </p>
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <div class="rating d-flex align-items-center">
+                      <span class="ml-2">IDR 500,000</span>
+                    </div>
+                    <a href="#" class="btn btn-brand">Beli</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Baris untuk bagian card-promo atau card yang menampilkan statistik pengguna, mentor, dan course -->
+          <div class="row justify-content-center mt-5">
+            <div class="col-lg-4 col-md-6 col-10 mt-3">
+              <div
+                class="card text-center card-promo mx-auto"
+                style="width: 18rem"
+              >
+                <div class="card-body">
+                  <h5 class="card-title">8.000+</h5>
+                  <p class="card-text">Users</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-10 mt-3">
+              <div
+                class="card text-center card-promo mx-auto"
+                style="width: 18rem"
+              >
+                <div class="card-body">
+                  <h5 class="card-title">400+</h5>
+                  <p class="card-text">Mentors</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-10 mt-3">
+              <div
+                class="card text-center card-promo mx-auto"
+                style="width: 18rem"
+              >
+                <div class="card-body">
+                  <h5 class="card-title">20+</h5>
+                  <p class="card-text">Courses</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION for CAROUSEL -->
+      <section id="carousel" class="section-padding mb-5">
+        <div class="container">
+          <div class="row pt-4">
+            <div class="col-12 text-center">
+              <div class="section-title">
+                <h1 class="display-4">Testimonials</h1>
+                <div class="line"></div>
+              </div>
+            </div>
+          </div>
+          <div
+            id="carouselExampleDark"
+            class="carousel carousel-dark slide"
+            data-bs-ride="carousel"
+          >
+            <div class="carousel-indicators">
+              <button
+                type="button"
+                data-bs-target="#carouselExampleDark"
+                data-bs-slide-to="0"
+                class="active"
+                aria-current="true"
+                aria-label="Slide 1"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carouselExampleDark"
+                data-bs-slide-to="1"
+                aria-label="Slide 2"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carouselExampleDark"
+                data-bs-slide-to="2"
+                aria-label="Slide 3"
+              ></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="row justify-content-center">
+                  <div class="col-lg-8">
+                    <div class="testimonial-box text-center">
+                      <p class="testimonial-text">
+                        Saya sangat puas mengikuti kursus ini! Materi skripsinya
+                        disampaikan dengan jelas, dan mentornya sangat baik
+                        serta sabar dalam menjawab setiap pertanyaan saya.
+                        Dengan harga yang terjangkau, saya merasa bimbingan yang
+                        diberikan jauh melebihi ekspektasi. Benar-benar membantu
+                        mempercepat proses penulisan skripsi saya! 
+                      </p>
+                      <div class="testimonial-author text-center">
+                        <h5 class="testimonial-name">John Doe</h5>
+                        <p class="testimonial-position">Student</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="row justify-content-center">
+                  <div class="col-lg-8">
+                    <div class="testimonial-box text-center">
+                      <p class="testimonial-text">
+                        Saya sangat puas mengikuti kursus ini! Materi skripsinya
+                        disampaikan dengan jelas, dan mentornya sangat baik
+                        serta sabar dalam menjawab setiap pertanyaan saya.
+                        Dengan harga yang terjangkau, saya merasa bimbingan yang
+                        diberikan jauh melebihi ekspektasi. Benar-benar membantu
+                        mempercepat proses penulisan skripsi saya! 
+                      </p>
+                      <div class="testimonial-author text-center">
+                        <h5 class="testimonial-name">Jane Doe</h5>
+                        <p class="testimonial-position">Teacher</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="row justify-content-center">
+                  <div class="col-lg-8">
+                    <div class="testimonial-box text-center">
+                      <p class="testimonial-text">
+                        Saya sangat puas mengikuti kursus ini! Materi skripsinya
+                        disampaikan dengan jelas, dan mentornya sangat baik
+                        serta sabar dalam menjawab setiap pertanyaan saya.
+                        Dengan harga yang terjangkau, saya merasa bimbingan yang
+                        diberikan jauh melebihi ekspektasi. Benar-benar membantu
+                        mempercepat proses penulisan skripsi saya! 
+                      </p>
+                      <div class="testimonial-author text-center">
+                        <h5 class="testimonial-name">Bob Smith</h5>
+                        <p class="testimonial-position">Student</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#carouselExampleDark"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#carouselExampleDark"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark">
+      <div class="footer-top">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4 col-sm-6 text-center">
+              <a href="#"
+                ><img
+                  src="{% static 'img/Dark-removebg-preview.png'%}"
+                  alt="logo footer"
+              /></a>
+              <p>
+                Your Solution to Complete Your Thesis
+              </p>
+              <p>+628555913000</p>
+              <p>www.Skripsi+.edu.id</p>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+              <h5 class="mb-0 text-white text-center">QUICK LINKS</h5>
+              <div class="line"></div>
+              <ul class="text-center">
+                <li><a href="/">Home</a></li>
+                <li><a href="mentors">Mentors</a></li>
+                <li><a href="courses">Courses</a></li>
+                <li><a href="about">About</a></li>
+                <li><a href="faq">FaQ's</a></li>
+              </ul>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+              <h5 class="mb-0 text-white text-center">FIND US</h5>
+              <div class="line"></div>
+              <div
+                class="social-icons text-center d-flex flex-column align-items-center"
+              >
+                <div class="row">
+                  <div class="col-6">
+                    <a href="#"><i class="ri-youtube-fill"></i></a>
+                    <p>Youtube</p>
+                  </div>
+                  <div class="col-6">
+                    <a href="#"><i class="ri-instagram-fill"></i></a>
+                    <p>Instagram</p>
+                  </div>
+                  <div class="col-6">
+                    <a href="#"><i class="ri-github-fill"></i></a>
+                    <p>Github</p>
+                  </div>
+                  <div class="col-6">
+                    <a href="#"><i class="ri-linkedin-box-fill"></i></a>
+                    <p>LinkedIn</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container">
+          <div class="row justify-content-between">
+            <div class="col-auto">
+              <p class="mb-0">© Copyright Skripsi<sup>+</sup></p>
+            </div>
+            <div class="col-auto">
+              <p class="mb-0">Code By <a href="#">Group 12</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+      integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
