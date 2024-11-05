@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> {% block title %} Skripsi+ {% endblock title %} </title>
+    <title>{% block title %} Skripsi+ {% endblock title %}</title>
     <link rel="stylesheet" href="{% static 'css/style.css'%}" />
     <link
       rel="icon"
@@ -35,9 +35,7 @@
     {% include 'components/navbar.html' %}
 
     <!-- Membuat bagian main dari website dengan beberapa section -->
-    <main class="container mx-auto p-4">
-      {% block content %} {% endblock content %}
-    </main>
+    <main class="">{% block content %} {% endblock content %}</main>
 
     <!-- FOOTER -->
     {% include 'components/footer.html' %}

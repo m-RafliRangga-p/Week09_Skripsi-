@@ -4,47 +4,67 @@
 {% block title %} Login {% endblock %} 
 
 {% block content %}
+  <main class="container d-flex align-items-center justify-content-center" style="min-height: 80vh;">
+      <div class="card p-4 shadow" style="width:100%; max-width: 32rem;">
+        <h2 class="text-center mb-4">Login</h2>
+        
+        <!-- pesan jika ada kesalahan -->
+        {% if messages %}
+        <div>
+            {% for message in messages %}
+            <div class="alert alert-danger" role="alert">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
 
+      <!-- form -->
+      <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        <!-- username_or_email -->
+        <div class="form-group mb-3">
+          <label for="username_or_email">Username / Email</label>
+          <input type="text" name="username_or_email" class="form-control" placeholder="Masukkan Username / Email" required>
+        </div>
+        <!-- password -->
+        <div class="form-group mb-3 position-relative">
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" class="form-control" placeholder="Masukkan Password" required>
+          <!-- Icon show/hide password -->
+          <span class="position-absolute" style="top: 48px; right: 10px; transform: translateY(-50%); cursor: pointer;" id="togglePassword">
+            <i class="ri-eye-line" style="color: black;" id="eyeIcon"></i>
+          </span>
+        </div>
 
-<main class="container d-flex align-items-center justify-content-center" style="min-height: 80vh;">
-    <div class="card p-4 shadow" style="width:100%; max-width: 32rem;">
-      <h2 class="text-center mb-4">Login</h2>
+        <!-- btn login -->
+        <button type="submit" class="btn btn-primary w-100">Login</button>
+      </form>
+
+      <!-- jika belum punya akun -->
+      <p class="text-center mt-3">
+        Tidak punya akun ? <a href="{% url 'register' %}">Register here</a>
+      </p>
       
-      <!-- pesan jika ada kesalahan -->
-      {% if messages %}
-      <div>
-          {% for message in messages %}
-          <div class="alert alert-danger" role="alert">
-              {{ message }}
-          </div>
-          {% endfor %}
       </div>
-      {% endif %}
-
-    <!-- form -->
-    <form action="{% url 'login' %}" method="POST">
-      {% csrf_token %}
-      <!-- username -->
-      <div class="form-group mb-3">
-        <label for="username">Username</label>
-        <input type="text" name="username" class="form-control" placeholder="Masukkan Username" required>
-      </div>
-      <!-- password -->
-      <div class="form-group mb-3">
-        <label for="password">Password</label>
-        <input type="password" name="password" class="form-control" placeholder="Masukkan Password" required>
-      </div>
-
-      <!-- btn login -->
-      <button type="submit" class="btn btn-primary w-100">Login</button>
-    </form>
-
-    <!-- jika belum punya akun -->
-    <p class="text-center mt-3">
-      Tidak punya akun ? <a href="{% url 'register' %}">Register here</a>
-    </p>
-    
-    </div>
   </main>
 
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#togglePassword').click(function() {
+        const passwordInput = $('#password');
+        const eyeIcon = $('#eyeIcon');
+
+        // Toggle the type attribute
+        if (passwordInput.attr('type') === 'password') {
+          passwordInput.attr('type', 'text');
+          eyeIcon.removeClass('ri-eye-line').addClass('ri-eye-off-line');
+        } else {
+          passwordInput.attr('type', 'password');
+          eyeIcon.removeClass('ri-eye-off-line').addClass('ri-eye-line');
+        }
+      });
+    });
+  </script>
 {% endblock %}
