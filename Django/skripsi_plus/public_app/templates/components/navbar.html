@@ -1,0 +1,82 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg bg-white sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <img
+        class="logo"
+        src="{% static 'img/Light-removebg-preview.png'%}"
+        alt="logo-Skripsi+"
+      />
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#Nav"
+      aria-controls="Nav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="Nav">
+      <ul class="navbar-nav m-auto">
+        <li class="nav-item">
+          <a
+            class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}"
+            href="{% url 'home' %}"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}"
+            href="{% url 'about' %}"
+            >About</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link {% if request.resolver_match.url_name == 'mentors' %}active{% endif %}"
+            href="#mentors"
+            >Mentors</a
+          >
+          {% comment %}
+          <a
+            class="nav-link {% if request.resolver_match.url_name == 'mentors' %}active{% endif %}"
+            href="{% url 'mentors' %}"
+            >Mentors</a
+          >
+          {% endcomment %}
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link {% if request.resolver_match.url_name == 'courses' %}active{% endif %}"
+            href="#courses"
+            >Courses</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link {% if request.resolver_match.url_name == 'faq' %}active{% endif %}"
+            href="{% url 'faq' %}"
+            >FaQ's</a
+          >
+        </li>
+      </ul>
+
+      {% if user.is_authenticated %}
+      <button class="btn btn-login">
+        <a href="{% url 'logout' %}">Logout</a>
+      </button>
+      {% else %}
+      <button class="btn btn-login">
+        <a href="{% url 'login' %}">Login</a>
+      </button>
+      <button class="btn btn-register">
+        <a href="{% url 'register' %}">Register</a>
+      </button>
+      {% endif %}
+    </div>
+  </div>
+</nav>

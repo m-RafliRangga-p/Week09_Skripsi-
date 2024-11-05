@@ -1,0 +1,68 @@
+{% load static %}
+<footer class="bg-dark">
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-sm-6 text-center">
+          <a href="#"
+            ><img
+              src="{% static 'img/Dark-removebg-preview.png'%}"
+              alt="logo footer"
+          /></a>
+          <p>Your Solution to Complete Your Thesis</p>
+          <p>+628555913000</p>
+          <p>www.Skripsi+.edu.id</p>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+          <h5 class="mb-0 text-white text-center">QUICK LINKS</h5>
+          <div class="line"></div>
+          <ul class="text-center">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="#mentors">Mentors</a></li>
+            <li><a href="#courses">Courses</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'faq' %}">FaQ's</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+          <h5 class="mb-0 text-white text-center">FIND US</h5>
+          <div class="line"></div>
+          <div
+            class="social-icons text-center d-flex flex-column align-items-center"
+          >
+            <div class="row">
+              <div class="col-6">
+                <a href="#"><i class="ri-youtube-fill"></i></a>
+                <p>Youtube</p>
+              </div>
+              <div class="col-6">
+                <a href="#"><i class="ri-instagram-fill"></i></a>
+                <p>Instagram</p>
+              </div>
+              <div class="col-6">
+                <a href="#"><i class="ri-github-fill"></i></a>
+                <p>Github</p>
+              </div>
+              <div class="col-6">
+                <a href="#"><i class="ri-linkedin-box-fill"></i></a>
+                <p>LinkedIn</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="row justify-content-between">
+        <div class="col-auto">
+          <p class="mb-0">© Copyright Skripsi<sup>+</sup></p>
+        </div>
+        <div class="col-auto">
+          <p class="mb-0">Code By <a href="#">Group 12</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
