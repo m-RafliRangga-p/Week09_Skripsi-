@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About</title>
+    <title>Mentors</title>
     <link rel="stylesheet" href="{% static 'css/style.css'%}" />
     <link rel="icon" href="{% static 'img/Light-modified.png'%}" type="image/x-icon" />
 
@@ -90,9 +90,9 @@
         </div>
         <div class="row justify-content-center mb-4">
             <div class="col-md-6">
-              <form class="form-inline d-flex justify-content-center">
-                <input class="form-control" id="searchInput" type="search" placeholder="Search by name or rating" aria-label="Search" />
-                <button class="btn btn-brand" type="button" id="searchBtn">Search</button>
+              <form class="form-inline d-flex justify-content-center" method="GET" action="{% url 'mentors' %}">
+                <input class="form-control" name="query" id="searchInput" type="search" placeholder="Search by name, rating, or skills" aria-label="Search" />
+                <button class="btn btn-brand" type="submit" id="searchBtn">Search</button>
               </form>
             </div>
         </div>          

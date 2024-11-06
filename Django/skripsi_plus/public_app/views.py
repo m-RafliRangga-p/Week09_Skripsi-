@@ -3,6 +3,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import Mentor
+from django.db.models import Q
+
 
 
 def home(request):
@@ -66,7 +68,19 @@ def logout_view(request):
     return redirect('home')
 
 def mentors(request):
+    # print("GET data:", request.GET)
+    query = request.GET.get('query')  # Ambil nilai pencarian dari URL
+    # print("Query yang diterima:", query)
     mentors = Mentor.objects.all()
+
+    if query:
+        # Filter berdasarkan nama, rating, atau skill menggunakan Q objects
+        mentors = mentors.filter(
+            Q(name__icontains=query) |
+            Q(rating__icontains=query) |
+            Q(skills__icontains=query)
+        ).distinct()  # distinct() menghindari hasil duplikasi
+    
     for mentor in mentors:
         # Memisahkan education berdasarkan '\n' agar menjadi list
         mentor.education = mentor.education.split("\n")
