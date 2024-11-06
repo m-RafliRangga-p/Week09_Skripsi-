@@ -36,18 +36,16 @@
           >
         </li>
         <li class="nav-item">
-          <a
+          <!-- <a
             class="nav-link {% if request.resolver_match.url_name == 'mentors' %}active{% endif %}"
             href="#mentors"
             >Mentors</a
-          >
-          {% comment %}
+          > -->
           <a
             class="nav-link {% if request.resolver_match.url_name == 'mentors' %}active{% endif %}"
             href="{% url 'mentors' %}"
             >Mentors</a
           >
-          {% endcomment %}
         </li>
         <li class="nav-item">
           <a

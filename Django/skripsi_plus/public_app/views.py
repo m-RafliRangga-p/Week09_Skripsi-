@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
+from .models import Mentor
 
 
 def home(request):
@@ -63,3 +64,13 @@ def register_view(request):
 def logout_view(request):
     logout(request)
     return redirect('home')
+
+def mentors(request):
+    mentors = Mentor.objects.all()
+    for mentor in mentors:
+        # Memisahkan education berdasarkan '\n' agar menjadi list
+        mentor.education = mentor.education.split("\n")
+        mentor.skills = mentor.skills.split(",")
+    
+    
+    return render(request, 'mentors.html', {'mentors': mentors})
