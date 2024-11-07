@@ -1,8 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
-from .models import Mentor
+from .models import Mentor, Course
 from django.db.models import Q
 
 
@@ -88,3 +88,20 @@ def mentors(request):
     
     
     return render(request, 'mentors.html', {'mentors': mentors})
+
+def course(request):
+    query = request.GET.get('query') 
+    courses = Course.objects.all()
+
+    if query:
+        # Filter courses based on name or price using Q objects
+        courses = courses.filter(
+            Q(title__icontains=query) |
+            Q(price__icontains=query)
+        ).distinct()  # Use distinct() to avoid duplicate results
+    
+    return render(request, 'courses.html', {'courses': courses})
+
+def course_detail(request, pk):
+    course = get_object_or_404(Course, pk=pk)
+    return render(request, 'detail-courses.html', {'course': course})

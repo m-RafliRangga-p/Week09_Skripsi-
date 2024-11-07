@@ -739,6 +739,7 @@ footer .line{
 .accordion-body a{
     color: var(--c-dark);
     text-decoration: underline !important;
+    cursor: pointer !important;
 }
 
 .accordion-button {
