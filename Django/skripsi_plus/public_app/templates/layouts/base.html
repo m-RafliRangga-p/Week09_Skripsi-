@@ -4,13 +4,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %} Skripsi+ {% endblock title %}</title>
-    <link rel="stylesheet" href="{% static 'css/style.css'%}" />
+    <title>Skripsi+</title>
+
     <link
       rel="icon"
       href="{% static 'img/Light-modified.png'%}"
       type="image/x-icon"
     />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css'%}" />
 
     <!-- Bootstrap CSS -->
     <link
@@ -29,6 +32,10 @@
       href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
       rel="stylesheet"
     />
+
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="{% static 'css/owl.theme.css'%}" />
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.css'%}" />
   </head>
   <body>
     <!-- NAVBAR -->
@@ -51,5 +58,16 @@
       integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
       crossorigin="anonymous"
     ></script>
+
+    <!-- JQuerry -->
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script src="{% static 'js/jQuerry.js'%}"></script>
+
+    <!-- Owl Carousel -->
+    <script src="{% static 'js/owl.carousel.min.js'%}"></script>
   </body>
 </html>

@@ -1,5 +1,5 @@
 {% load static %}
-<footer class="bg-dark">
+<footer class="bg-dark mt-4">
   <div class="footer-top">
     <div class="container">
       <div class="row">
@@ -18,8 +18,8 @@
           <div class="line"></div>
           <ul class="text-center">
             <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="#mentors">Mentors</a></li>
-            <li><a href="#courses">Courses</a></li>
+            <li><a href="{% url 'mentors' %}">Mentors</a></li>
+            <li><a href="{% url 'course' %}">Courses</a></li>
             <li><a href="{% url 'about' %}">About</a></li>
             <li><a href="{% url 'faq' %}">FaQ's</a></li>
           </ul>

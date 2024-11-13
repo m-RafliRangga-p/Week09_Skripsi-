@@ -36,11 +36,6 @@
           >
         </li>
         <li class="nav-item">
-          <!-- <a
-            class="nav-link {% if request.resolver_match.url_name == 'mentors' %}active{% endif %}"
-            href="#mentors"
-            >Mentors</a
-          > -->
           <a
             class="nav-link {% if request.resolver_match.url_name == 'mentors' %}active{% endif %}"
             href="{% url 'mentors' %}"
@@ -49,7 +44,7 @@
         </li>
         <li class="nav-item">
           <a
-            class="nav-link {% if request.resolver_match.url_name == 'courses' %}active{% endif %}"
+            class="nav-link {% if request.resolver_match.url_name == 'course' %}active{% endif %}"
             href="{% url 'course' %}"
             >Courses</a
           >

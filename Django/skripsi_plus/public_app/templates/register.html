@@ -1,107 +1,126 @@
-{% extends 'layouts/base.html'%} 
-{% load static %} 
+{% extends 'layouts/base.html'%} {% load static %} {% block content %}
+<div
+  class="container d-flex align-items-center justify-content-center"
+  style="min-height: 80vh"
+>
+  <div class="card p-4 shadow" style="width: 100%; max-width: 32rem">
+    <h2 class="text-center mb-4">Register</h2>
 
-{% block title %} Register {% endblock %} 
-
-{% block content %}
-  <main class="container d-flex align-items-center justify-content-center" style="min-height: 80vh;">
-    <div class="card p-4 shadow" style="width: 100%; max-width: 32rem;">
-      <h2 class="text-center mb-4">Register</h2>
-
-      <!-- pesan jika ada kesalahan -->
-      {% if messages %}
-      <div>
-        {% for message in messages %}
-        <div class="alert alert-danger" role="alert">
-          {{ message}}
-        </div>
-        {% endfor %}
-      </div>
-      {% endif %}
-
-      <!-- form -->
-      <form action="{% url 'register' %}" method="POST">
-        {% csrf_token %}
-        <!-- email -->
-        <div class="form-group mb-3">
-          <label for="email">Email</label>
-          <input type="email" name="email" id="email" class="form-control" placeholder="Masukkan Email" required>
-        </div>
-
-        <!-- Username -->
-        <div class="form-group mb-3">
-          <label for="username">Username</label>
-          <input type="text" name="username" id="username" class="form-control" placeholder="Masukkan Username" required>
-      </div>
-
-        <!-- Password -->
-        <div class="form-group mb-3 position-relative">
-          <label for="password">Password</label>
-          <input type="password" name="password" id="password" class="form-control" placeholder="Masukkan Password" required>
-          <!-- Show/hide password icon -->
-          <span class="position-absolute" style="top: 48px; right: 10px; transform: translateY(-50%); cursor: pointer;" id="togglePassword">
-              <i class="ri-eye-line" style="color: black;" id="eyeIcon"></i>
-          </span>
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="form-group mb-3 position-relative">
-          <label for="confirm_password">Confirm Password</label>
-          <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Masukkan Password Lagi" required>
-          <!-- Show/hide confirm password icon -->
-          <span class="position-absolute" style="top: 48px; right: 10px; transform: translateY(-50%); cursor: pointer;" id="toggleConfirmPassword">
-            <i class="ri-eye-line" style="color: black;" id="confirmEyeIcon"></i>
-          </span>
-        </div>
-
-        <!-- Accept Terms Checkbox -->
-        <div class="form-check mb-3">
-          <input type="checkbox" name="accept_terms" id="accept_terms" class="form-check-input" required>
-          <label class="form-check-label" for="accept_terms" style="cursor: pointer;">I accept the terms and conditions</label>
-        </div>
-
-        <!-- Register Button -->
-        <button type="submit" class="btn btn-primary w-100">Register</button>
-      </form>
-
-      <!-- Link to Login if already have an account -->
-      <p class="text-center mt-3">
-        Sudah punya akun? <a href="{% url 'login' %}">Login di sini</a>
-      </p>
-      
+    <!-- pesan jika ada kesalahan -->
+    {% if messages %}
+    <div>
+      {% for message in messages %}
+      <div class="alert alert-danger" role="alert">{{ message}}</div>
+      {% endfor %}
     </div>
-  </main>
+    {% endif %}
 
-  <!-- jQuery library -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <!-- External JavaScript for show/hide password -->
-  <script>
-    $(document).ready(function() {
-      $('#togglePassword').click(function() {
-        const passwordInput = $('#password');
-        const eyeIcon = $('#eyeIcon');
+    <!-- form -->
+    <form action="{% url 'register' %}" method="POST">
+      {% csrf_token %}
+      <!-- email -->
+      <div class="form-group mb-3">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          class="form-control"
+          placeholder="Masukkan Email"
+          required
+        />
+      </div>
 
-        if (passwordInput.attr('type') === 'password') {
-          passwordInput.attr('type', 'text');
-          eyeIcon.removeClass('ri-eye-line').addClass('ri-eye-off-line');
-        } else {
-          passwordInput.attr('type', 'password');
-          eyeIcon.removeClass('ri-eye-off-line').addClass('ri-eye-line');
-        }
-      });
+      <!-- Username -->
+      <div class="form-group mb-3">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          class="form-control"
+          placeholder="Masukkan Username"
+          required
+        />
+      </div>
 
-      $('#toggleConfirmPassword').click(function() {
-        const confirmPasswordInput = $('#confirm_password');
-        const confirmEyeIcon = $('#confirmEyeIcon');
+      <!-- Password -->
+      <div class="form-group mb-3 position-relative">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          class="form-control"
+          placeholder="Masukkan Password"
+          required
+        />
+        <!-- Show/hide password icon -->
+        <span
+          class="position-absolute"
+          style="
+            top: 48px;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+          "
+          id="togglePassword"
+        >
+          <i class="ri-eye-line" style="color: black" id="eyeIcon"></i>
+        </span>
+      </div>
 
-        if (confirmPasswordInput.attr('type') === 'password') {
-          confirmPasswordInput.attr('type', 'text');
-          confirmEyeIcon.removeClass('ri-eye-line').addClass('ri-eye-off-line');
-        } else {
-          confirmPasswordInput.attr('type', 'password');
-          confirmEyeIcon.removeClass('ri-eye-off-line').addClass('ri-eye-line');
-        }
-      });
-    });
-  </script>
-{% endblock %} 
+      <!-- Confirm Password -->
+      <div class="form-group mb-3 position-relative">
+        <label for="confirm_password">Confirm Password</label>
+        <input
+          type="password"
+          name="confirm_password"
+          id="confirm_password"
+          class="form-control"
+          placeholder="Masukkan Password Lagi"
+          required
+        />
+        <!-- Show/hide confirm password icon -->
+        <span
+          class="position-absolute"
+          style="
+            top: 48px;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+          "
+          id="toggleConfirmPassword"
+        >
+          <i class="ri-eye-line" style="color: black" id="confirmEyeIcon"></i>
+        </span>
+      </div>
+
+      <!-- Accept Terms Checkbox -->
+      <div class="form-check mb-3">
+        <input
+          type="checkbox"
+          name="accept_terms"
+          id="accept_terms"
+          class="form-check-input"
+          required
+        />
+        <label
+          class="form-check-label"
+          for="accept_terms"
+          style="cursor: pointer"
+          >I accept the terms and conditions</label
+        >
+      </div>
+
+      <!-- Register Button -->
+      <button type="submit" class="btn btn-primary w-100">Register</button>
+    </form>
+
+    <!-- Link to Login if already have an account -->
+    <p class="text-center mt-3">
+      Sudah punya akun? <a href="{% url 'login' %}">Login di sini</a>
+    </p>
+  </div>
+</div>
+{% endblock %}
