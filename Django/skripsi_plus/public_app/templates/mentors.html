@@ -1,284 +1,172 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mentors</title>
-    <link rel="stylesheet" href="{% static 'css/style.css'%}" />
-    <link rel="icon" href="{% static 'img/Light-modified.png'%}" type="image/x-icon" />
+{% extends "layouts/base.html" %} {% load static %} {% block content %}
 
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
-    />
-
-        <!-- CDN for Icons -->
-        <link
-        href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
-        rel="stylesheet"/>
-  </head>
-  <body>
-    <!-- NAVBAR -->
-    <!-- Masih menggunakan navbar standar dari bootstrap dengan 
-      penambahan logo berupa image dan 2 buah button serta custom style -->
-    <nav class="navbar navbar-expand-lg bg-white sticky-top">
-      <div class="container">
-        <a class="navbar-brand" href="/">
-          <img
-            class="logo"
-            src="{% static 'img/Light-removebg-preview.png'%}"
-            alt="logo-Skripsi+"
-          />
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#Nav"
-          aria-controls="Nav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="Nav">
-          <ul class="navbar-nav m-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/about">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="/mentors">Mentors</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/courses">Courses</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/faq">FaQ's</a>
-            </li>
-          </ul>
-          <button class="btn btn-login">
-            <a href="/login">Login</a>
-          </button>
-          <button class="btn btn-register">
-            <a href="/register">Register</a>
-          </button>
+<div>
+  <div class="container mt-5 mb-0">
+    <div class="row">
+      <div class="col-12 text-center">
+        <div class="section-title">
+          <h1 class="display-4">Our Mentors</h1>
+          <div class="line"></div>
         </div>
       </div>
-    </nav>
-
-    <!-- Membuat bagian main dari website dengan beberapa section -->
-    <main class="mb-5">
-      <div class="container mt-5 mb-0">
-        <div class="row">
-            <div class="col-12 text-center">
-                <div class="section-title">
-                  <h1 class="display-4">Our Mentors</h1>
-                  <div class="line"></div>
-                </div>
-              </div>
-        </div>
-        <div class="row justify-content-center mb-4">
-            <div class="col-md-6">
-              <form class="form-inline d-flex justify-content-center" method="GET" action="{% url 'mentors' %}">
-                <input class="form-control" name="query" id="searchInput" type="search" placeholder="Search by name, rating, or skills" aria-label="Search" />
-                <button class="btn btn-brand" type="submit" id="searchBtn">Search</button>
-              </form>
-            </div>
-        </div>          
-        <div class="row" id="mentor-cards">
-          {% for mentor in mentors %}
-          <div class="col-lg-3 col-md-6 mt-3">
-            <div class="card h-100" style="width: 100%">
-              <div class="image-zoom">
-                <div class="image-zoom-wrapper">
-                  <img src="{{ mentor.image.url }}" class="card-img-top" alt="{{ mentor.name }}">
-                </div>
-              </div>
-              <div class="card-body d-flex flex-column text-center">
-                <h5 class="card-title mb-3">{{ mentor.name }}</h5>
-                <div class="mt-auto d-flex justify-content-between align-items-center">
-                  <div class="rating d-flex align-items-center">
-                    <i class="bi bi-star-fill"></i>
-                    <span class="ms-1">{{mentor.rating}}</span>
-                  </div>
-                  <a href="#" class="btn btn-brand" data-bs-toggle="modal" data-bs-target="#mentorModal{{ mentor.id }}">Detail</a>
-                </div>
-              </div>
+    </div>
+    <div class="row justify-content-center mb-4">
+      <div class="col-md-6">
+        <form
+          class="form-inline d-flex justify-content-center"
+          method="GET"
+          action="{% url 'mentors' %}"
+        >
+          <input
+            class="form-control"
+            name="query"
+            id="searchInput"
+            type="search"
+            placeholder="Search by name, rating, or skills"
+            aria-label="Search"
+          />
+          <button class="btn btn-brand" type="submit" id="searchBtn">
+            Search
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="row" id="mentor-cards">
+      {% for mentor in mentors %}
+      <div class="col-lg-3 col-md-6 mt-3">
+        <div class="card h-100" style="width: 100%">
+          <div class="image-zoom">
+            <div class="image-zoom-wrapper">
+              <img
+                src="{{ mentor.image.url }}"
+                class="card-img-top"
+                alt="{{ mentor.name }}"
+              />
             </div>
           </div>
-          {% endfor %}
-        </div>
-      </div>
-
-      <!-- Mentor Details Modals -->
-      {% for mentor in mentors %}
-      <div class="modal fade" id="mentorModal{{ mentor.id }}" tabindex="-1" aria-labelledby="mentorModalLabel{{ mentor.id }}" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <div class="image-container d-flex align-items-center justify-content-center">
-                <img src="{{ mentor.image.url }}" alt="{{ mentor.name }}" class="img-fluid" />
+          <div class="card-body d-flex flex-column text-center">
+            <h5 class="card-title mb-3">{{ mentor.name }}</h5>
+            <div
+              class="mt-auto d-flex justify-content-between align-items-center"
+            >
+              <div class="rating d-flex align-items-center">
+                <i class="bi bi-star-fill"></i>
+                <span class="ms-1">{{mentor.rating}}</span>
               </div>
-
-              <div class="nama-dosen ms-lg-5 mt-5">
-                <h2>{{ mentor.name }}</h2>
-                <h5>{{ mentor.specialization }}</h5>
-              </div>
-
-              <div class="rating-dosen ms-lg-5 mt-5 me-lg-5 d-flex justify-content-between align-items-center">
-                <div class="rating d-flex align-items-center">
-                  <i class="bi bi-star-fill"></i>
-                  <span class="ms-1">{{ mentor.rating }} / 5</span>
-                </div>
-                <div class="rating d-flex align-items-center">
-                  <i class="ri-briefcase-4-fill bag"></i>
-                  <span class="ms-1">{{ mentor.experience }} Years Experience</span>
-                </div>
-              </div>
-
-              <hr class="hr-modal">
-
-              <div class="keterangan-dosen ms-lg-5 mt-5">
-                <div class="keterangan-item">
-                  <div class="rating d-flex align-items-center">
-                    <i class="ri-lightbulb-flash-fill"></i>
-                    <span class="ms-1">Get to Know</span>
-                  </div>
-                  <p class="me-lg-5">{{ mentor.bio }}</p>
-                </div>
-
-                <div class="keterangan-item">
-                  <div class="rating d-flex align-items-center">
-                    <i class="bi bi-mortarboard-fill"></i>
-                    <span class="ms-1">Educational Background</span>
-                  </div>
-                  <div class="keterangan-list ms-3">
-                    <ul>
-                      {% for education in mentor.education %}
-                      <li><p>{{ education|cut:"\n"  }}</p></li>
-                      {% endfor %}
-                    </ul>
-                  </div>
-                </div>
-
-                <div class="keterangan-item">
-                  <div class="rating d-flex align-items-center">
-                    <i class="ri-user-star-fill"></i>
-                    <span class="ms-1">Skills</span>
-                  </div>
-                  <div class="skill-dosen ms-3">
-                    {% for skill in mentor.skills %}
-                      <a href=""><span>{{ skill }}</span></a> 
-                    {% endfor %}
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer mt-5">
-              <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-brand">Consult</button>
+              <a
+                href="#"
+                class="btn btn-brand"
+                data-bs-toggle="modal"
+                data-bs-target="#mentorModal{{ mentor.id }}"
+                >Detail</a
+              >
             </div>
           </div>
         </div>
       </div>
       {% endfor %}
-    </main>
+    </div>
+  </div>
 
-    <!-- FOOTER -->
-    <footer class="bg-dark">
-      <div class="footer-top">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-4 col-sm-6 text-center">
-              <a href="#"
-                ><img
-                  src="{% static 'img/Dark-removebg-preview.png'%}"
-                  alt="logo footer"
-              /></a>
-              <p>
-                Your Solution to Complete Your Thesis
-              </p>
-              <p>+628555913000</p>
-              <p>www.Skripsi+.edu.id</p>
+  <!-- Mentor Details Modals -->
+  {% for mentor in mentors %}
+  <div
+    class="modal fade"
+    id="mentorModal{{ mentor.id }}"
+    tabindex="-1"
+    aria-labelledby="mentorModalLabel{{ mentor.id }}"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div
+            class="image-container d-flex align-items-center justify-content-center"
+          >
+            <img
+              src="{{ mentor.image.url }}"
+              alt="{{ mentor.name }}"
+              class="img-fluid"
+            />
+          </div>
+
+          <div class="nama-dosen ms-lg-5 mt-5">
+            <h2>{{ mentor.name }}</h2>
+            <h5>{{ mentor.specialization }}</h5>
+          </div>
+
+          <div
+            class="rating-dosen ms-lg-5 mt-5 me-lg-5 d-flex justify-content-between align-items-center"
+          >
+            <div class="rating d-flex align-items-center">
+              <i class="bi bi-star-fill"></i>
+              <span class="ms-1">{{ mentor.rating }} / 5</span>
             </div>
-            <div class="col-lg-4 col-sm-6">
-              <h5 class="mb-0 text-white text-center">QUICK LINKS</h5>
-              <div class="line"></div>
-              <ul class="text-center">
-                <li><a href="/">Home</a></li>
-                <li><a href="/mentors">Mentors</a></li>
-                <li><a href="/courses">Courses</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/faq">FaQ's</a></li>
-              </ul>
+            <div class="rating d-flex align-items-center">
+              <i class="ri-briefcase-4-fill bag"></i>
+              <span class="ms-1">{{ mentor.experience }} Years Experience</span>
             </div>
-            <div class="col-lg-4 col-sm-6">
-              <h5 class="mb-0 text-white text-center">FIND US</h5>
-              <div class="line"></div>
-              <div class="social-icons text-center d-flex flex-column align-items-center">
-                <div class="row">
-                  <div class="col-6">
-                    <a href="#"><i class="ri-youtube-fill"></i></a> 
-                    <p>Youtube</p>
-                  </div>
-                  <div class="col-6">
-                    <a href="#"><i class="ri-instagram-fill"></i></a>
-                    <p>Instagram</p>
-                  </div>
-                  <div class="col-6">
-                    <a href="#"><i class="ri-github-fill"></i></a>
-                    <p>Github</p>
-                  </div>
-                  <div class="col-6">
-                    <a href="#"><i class="ri-linkedin-box-fill"></i></a>
-                    <p>LinkedIn</p>
-                  </div>
-                </div>
+          </div>
+
+          <hr class="hr-modal" />
+
+          <div class="keterangan-dosen ms-lg-5 mt-5">
+            <div class="keterangan-item">
+              <div class="rating d-flex align-items-center">
+                <i class="ri-lightbulb-flash-fill"></i>
+                <span class="ms-1">Get to Know</span>
+              </div>
+              <p class="me-lg-5">{{ mentor.bio }}</p>
+            </div>
+
+            <div class="keterangan-item">
+              <div class="rating d-flex align-items-center">
+                <i class="bi bi-mortarboard-fill"></i>
+                <span class="ms-1">Educational Background</span>
+              </div>
+              <div class="keterangan-list ms-3">
+                <ul>
+                  {% for education in mentor.education %}
+                  <li><p>{{ education|cut:"\n" }}</p></li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+
+            <div class="keterangan-item">
+              <div class="rating d-flex align-items-center">
+                <i class="ri-user-star-fill"></i>
+                <span class="ms-1">Skills</span>
+              </div>
+              <div class="skill-dosen ms-3">
+                {% for skill in mentor.skills %}
+                <a href=""><span>{{ skill }}</span></a>
+                {% endfor %}
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="footer-bottom">
-        <div class="container">
-          <div class="row justify-content-between">
-            <div class="col-auto">
-              <p class="mb-0">© Copyright Skripsi<sup>+</sup></p>
-            </div>
-            <div class="col-auto">
-              <p class="mb-0">Code By <a href="#">Group 12</a></p>
-            </div>
-          </div>
+        <div class="modal-footer mt-5">
+          <button
+            type="button"
+            class="btn btn-outline-danger"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button type="button" class="btn btn-brand">Consult</button>
         </div>
       </div>
-    </footer>
-
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <!-- <script src="../assets/js/jQuerry.js"></script> -->
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-      integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-      crossorigin="anonymous"
-    ></script>
-  </body>
-</html>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock content %}
