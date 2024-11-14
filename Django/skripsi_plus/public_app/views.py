@@ -82,7 +82,7 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('home')  # jika login berhasil
+            return redirect('dashboard')  # jika login berhasil
         else:
             messages.error(request, 'Username atau password salah')
     return render(request, 'login.html')
@@ -118,3 +118,8 @@ def register_view(request):
 def logout_view(request):
     logout(request)
     return redirect('home')
+
+
+@login_required(login_url='login')
+def dashboard(request):
+    return render(request, 'dashboard.html')

@@ -1,4 +1,4 @@
-from django.urls import path 
+from django.urls import path
 from public_app import views
 
 urlpatterns = [
@@ -11,4 +11,6 @@ urlpatterns = [
     path('mentors/', views.mentors, name='mentors'),
     path('courses/', views.course, name='course'),
     path('courses/<int:pk>/', views.course_detail, name='course_detail'),
+    # harus login
+    path('dashboard/', views.dashboard, name='dashboard'),
 ]
