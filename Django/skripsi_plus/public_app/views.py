@@ -55,71 +55,12 @@ def course(request):
     return render(request, 'courses.html', {'courses': courses})
 
 
-@login_required(login_url='login')
+@login_required(login_url='account_login')
 def course_detail(request, pk):
     course = get_object_or_404(Course, pk=pk)
     return render(request, 'detail-courses.html', {'course': course})
 
 
-def login_view(request):
-    if request.user.is_authenticated:
-        return redirect('home')
-
-    if 'next' in request.GET:
-        messages.info(
-            request, 'Silahkan login untuk mengakses halaman tersebut.')
-
-    if request.method == 'POST':
-        username_or_email = request.POST.get('username_or_email')
-        password = request.POST.get('password')
-
-        try:
-            user = User.objects.get(email=username_or_email)
-            username = user.username
-        except User.DoesNotExist:
-            username = username_or_email
-
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect('dashboard')  # jika login berhasil
-        else:
-            messages.error(request, 'Username atau password salah')
-    return render(request, 'login.html')
-
-
-def register_view(request):
-    if request.user.is_authenticated:
-        return redirect('home')
-
-    if request.method == 'POST':
-        email = request.POST.get('email')
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        confirm_password = request.POST.get('confirm_password')
-
-        if password == confirm_password:
-            if User.objects.filter(username=username).exists():
-                messages.error(request, 'Username sudah digunakan')
-            elif User.objects.filter(email=email).exists():
-                messages.error(request, 'Email sudah digunakan')
-            else:
-                user = User.objects.create_user(
-                    username=username, email=email, password=password)
-                user.save()
-                messages.success(
-                    request, 'Registrasi berhasil! Silahkan login.')
-                return redirect('login')
-        else:
-            messages.error(request, 'Password tidak sesuai')
-    return render(request, 'register.html')
-
-
-def logout_view(request):
-    logout(request)
-    return redirect('home')
-
-
-@login_required(login_url='login')
+@login_required(login_url='account_login')
 def dashboard(request):
     return render(request, 'dashboard.html')

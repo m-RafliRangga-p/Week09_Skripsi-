@@ -60,17 +60,17 @@
 
       {% if user.is_authenticated %}
       <button class="btn btn-login">
-        <a href="{% url 'logout' %}">Logout</a>
+        <a href="{% url 'account_logout' %}">Logout</a>
       </button>
       <button class="btn btn-register rounded-md">
         <a href="{% url 'dashboard' %}">Dashboard</a>
       </button>
       {% else %}
       <button class="btn btn-login">
-        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'account_login' %}">Login</a>
       </button>
       <button class="btn btn-register">
-        <a href="{% url 'register' %}">Register</a>
+        <a href="{% url 'account_signup' %}">Register</a>
       </button>
       {% endif %}
     </div>

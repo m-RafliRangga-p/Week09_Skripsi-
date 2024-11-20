@@ -42,7 +42,29 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'public_app',
+    
+    # django allauth
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
+
+SITE_ID = 1 # ori dari django allauth tjoy
+
+# django allauth settings
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'  # Login dengan username atau email
+ACCOUNT_EMAIL_REQUIRED = True  # Email wajib
+ACCOUNT_EMAIL_VERIFICATION = 'optional'  # Email verifikasi opsional nanti diganti mandatory
+LOGIN_REDIRECT_URL = '/'  # Arahkan setelah login
+LOGOUT_REDIRECT_URL = '/'  # Arahkan setelah logout
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -52,6 +74,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
+    # django allauth
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'skripsi_plus.urls'
