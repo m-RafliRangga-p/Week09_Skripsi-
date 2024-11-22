@@ -1,0 +1,74 @@
+{% extends 'layouts/base.html'%} {% load static %} {% block content %}
+<div
+  class="container d-flex align-items-center justify-content-center"
+  style="min-height: 80vh"
+>
+  <div class="card p-4 shadow" style="width: 100%; max-width: 32rem">
+    <h2 class="text-center mb-4">Login</h2>
+
+    <!-- pesan jika ada kesalahan -->
+    {% if messages %}
+    <div>
+      {% for message in messages %}
+      <div
+        class="alert {% if message.tags == 'error' %}alert-danger{% elif message.tags == 'success' %}alert-success{% elif message.tags == 'info' %}alert-info{% endif %}"
+        role="alert"
+      >
+        {{ message }}
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- form -->
+    <form action="{% url 'account_login' %}" method="POST">
+      {% csrf_token %}
+      <!-- username_or_email -->
+      <div class="form-group mb-3">
+        <label for="username_or_email">Username / Email</label>
+        <input
+          type="text"
+          name="login"  
+          class="form-control"
+          placeholder="Masukkan Username / Email"
+          required
+        />
+        <!-- Ganti name jadi login  -->
+      </div>
+      <!-- password -->
+      <div class="form-group mb-3 position-relative">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          class="form-control"
+          placeholder="Masukkan Password"
+          required
+        />
+        <!-- Icon show/hide password -->
+        <span
+          class="position-absolute"
+          style="
+            top: 48px;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+          "
+          id="togglePassword"
+        >
+          <i class="ri-eye-line" style="color: black" id="eyeIcon"></i>
+        </span>
+      </div>
+
+      <!-- btn login -->
+      <button type="submit" class="btn btn-primary w-100">Login</button>
+    </form>
+
+    <!-- jika belum punya akun -->
+    <p class="text-center mt-3">
+      Tidak punya akun ? <a href="{% url 'account_signup' %}">Register here</a>
+    </p>
+  </div>
+</div>
+{% endblock %}
