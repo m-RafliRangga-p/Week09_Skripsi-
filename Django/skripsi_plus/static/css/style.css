@@ -785,4 +785,35 @@ footer .line{
     }
 }
 
+/* ----- Sidebar --------- */
+.sidebar {
+    height: 100vh; /* Full height */
+    border-right: 1px solid #ddd; /* Light border */
+}
+  
+.sidebar .nav-link,
+.offcanvas-body .nav-link {
+    font-size: 1.1rem;
+    padding: 10px 15px;
+    color: #333;
+    transition: background 0.2s ease-in-out;
+}
+  
+.sidebar .nav-link:hover,
+.offcanvas-body .nav-link:hover {
+    background: #f8f9fa;
+    color: var(--c-brand);
+}
+  
+.sidebar .nav-link.active,
+.offcanvas-body .nav-link.active{
+    background: var(--c-brand);
+    color: #fff;
+    border-radius: 10px;
+}
+
+.sidebar .nav-link.active:hover,
+.offcanvas-body  .nav-link.active:hover{
+    color: #fff !important
+}
 
