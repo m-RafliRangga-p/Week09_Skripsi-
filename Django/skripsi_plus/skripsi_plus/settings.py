@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'public_app',
-    
+
     # django allauth
     'django.contrib.sites',
     'allauth',
@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
 ]
 
-SITE_ID = 1 # ori dari django allauth tjoy
+SITE_ID = 1  # ori dari django allauth tjoy
 
 # django allauth settings
 AUTHENTICATION_BACKENDS = [
@@ -59,9 +59,11 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-ACCOUNT_AUTHENTICATION_METHOD = 'username_email'  # Login dengan username atau email
+# Login dengan username atau email
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True  # Email wajib
-ACCOUNT_EMAIL_VERIFICATION = 'optional'  # Email verifikasi opsional nanti diganti mandatory
+# gunakan 'mandatory' untuk wajib verifikasi, 'none' untuk tidak perlu verifikasi, atau 'optional' untuk opsional
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 LOGIN_REDIRECT_URL = '/'  # Arahkan setelah login
 LOGOUT_REDIRECT_URL = '/'  # Arahkan setelah logout
 
@@ -74,7 +76,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
+
     # django allauth
     'allauth.account.middleware.AccountMiddleware',
 ]
