@@ -80,35 +80,16 @@ $(document).ready(function () {
 
 // Toggle Pasword
 $(document).ready(function () {
-  $("#togglePassword").click(function () {
-    const passwordInput = $("#password");
-    const eyeIcon = $("#eyeIcon");
+  $(".toggle-password").click(function () {
+    const input = $(this).siblings("input"); // Mencari elemen input di dalam elemen yang sama
+    const icon = $(this).find("i");
 
-    // Toggle the type attribute
-    if (passwordInput.attr("type") === "password") {
-      passwordInput.attr("type", "text");
-      eyeIcon.removeClass("ri-eye-line").addClass("ri-eye-off-line");
+    if (input.attr("type") === "password") {
+      input.attr("type", "text");
+      icon.removeClass("ri-eye-line").addClass("ri-eye-off-line");
     } else {
-      passwordInput.attr("type", "password");
-      eyeIcon.removeClass("ri-eye-off-line").addClass("ri-eye-line");
-    }
-  });
-
-  $("#toggleConfirmPassword").click(function () {
-    const confirmPasswordInput = $("#confirm_password");
-    const confirmEyeIcon = $("#confirmEyeIcon");
-
-    if (confirmPasswordInput.attr("type") === "password") {
-      confirmPasswordInput.attr("type", "text");
-      confirmEyeIcon.removeClass("ri-eye-line").addClass("ri-eye-off-line");
-    } else {
-      confirmPasswordInput.attr("type", "password");
-      confirmEyeIcon.removeClass("ri-eye-off-line").addClass("ri-eye-line");
+      input.attr("type", "password");
+      icon.removeClass("ri-eye-off-line").addClass("ri-eye-line");
     }
   });
 });
-
-
-
-
-
