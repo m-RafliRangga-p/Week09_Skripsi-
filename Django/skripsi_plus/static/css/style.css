@@ -814,6 +814,5 @@ footer .line{
 
 .sidebar .nav-link.active:hover,
 .offcanvas-body  .nav-link.active:hover{
-    color: #fff !important
+    color: #fff !important;
 }
-
