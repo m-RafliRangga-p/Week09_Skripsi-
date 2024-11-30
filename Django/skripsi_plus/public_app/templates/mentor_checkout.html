@@ -1,0 +1,22 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+  <div class="row">
+    <div class="col-md-6">
+      <img src="{{ mentor.image.url }}" alt="{{ mentor.name }}" class="img-fluid rounded">
+    </div>
+    <div class="col-md-6">
+      <h1>{{ mentor.name }}</h1>
+      <p class="text-muted">{{ mentor.specialization }}</p>
+      <p>{{ mentor.bio }}</p>
+      <h3>Price: <span class="text-success">Rp{{ mentor.price }}</span></h3>
+      <div class="mt-4">
+        <a href="/mentors/"><button type="button" class="btn btn-outline-danger">Back</button></a>
+        <a href="#" class="btn btn-brand">Checkout</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

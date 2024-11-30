@@ -64,3 +64,12 @@ def course_detail(request, pk):
 @login_required(login_url='account_login')
 def dashboard(request):
     return render(request, 'dashboard.html')
+
+
+def mentor_checkout(request, mentor_id):
+    mentor = get_object_or_404(Mentor, id=mentor_id)
+    return render(request, 'mentor_checkout.html', {'mentor': mentor})
+
+def course_checkout(request, course_id):
+    course = get_object_or_404(Course, id=course_id)
+    return render(request, 'course_checkout.html', {'course': course})

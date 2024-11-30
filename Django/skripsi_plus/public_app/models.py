@@ -10,6 +10,7 @@ class Mentor(models.Model):
     bio = models.TextField()
     education = models.TextField(help_text="Educational background")
     skills = models.TextField(help_text="Comma-separated list of skills")
+    price = models.DecimalField(max_digits=10, decimal_places=3, default=0.0, help_text="Consultation fee")
 
     def __str__(self):
         return self.name

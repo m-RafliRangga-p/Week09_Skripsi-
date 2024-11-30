@@ -163,7 +163,7 @@
             Close
           </button>
           {% if user.is_authenticated%}
-          <button type="button" class="btn btn-brand">Consult</button>
+            <a class="btn btn-brand" href="{% url 'mentor_checkout' mentor.id %}">Consult</a>
           {% else %}
           <button class="btn btn-register">
             <a href="{% url 'account_login' %}">Login</a>

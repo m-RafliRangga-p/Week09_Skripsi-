@@ -1,6 +1,6 @@
 {% extends 'layouts/base.html' %} {% load static %} {% block content %}
 <div>
-  <div class="container mt-5">
+  <div class="container mt-5 mb-5">
     <div class="row">
       <div class="col-12">
         <h1 class="display-4">{{ course.title }}</h1>
@@ -68,7 +68,7 @@
       <a href="/courses"
         ><button type="button" class="btn btn-outline-danger">Back</button></a
       >
-      <button type="button" class="btn btn-brand">Buy Course</button>
+      <a class="btn btn-brand" href="{% url 'course_checkout' course.id %}">Buy Course</a>
     </div>
   </div>
 </div>
