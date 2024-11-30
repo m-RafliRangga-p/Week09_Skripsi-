@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from .models import Mentor, Course
+from .models import Mentor, Course, Purchase
 from django.db.models import Q
 
 
@@ -63,13 +63,25 @@ def course_detail(request, pk):
 
 @login_required(login_url='account_login')
 def dashboard(request):
-    return render(request, 'dashboard.html')
-
+    purchases = Purchase.objects.filter(user=request.user)
+    return render(request, 'dashboard.html', {'purchases': purchases})
 
 def mentor_checkout(request, mentor_id):
     mentor = get_object_or_404(Mentor, id=mentor_id)
+    
+    if request.method == "POST":
+        # Simpan pembelian mentor
+        Purchase.objects.create(user=request.user, mentor=mentor)
+        return redirect('dashboard')  # Arahkan ke dashboard setelah checkout
+    
     return render(request, 'mentor_checkout.html', {'mentor': mentor})
 
 def course_checkout(request, course_id):
     course = get_object_or_404(Course, id=course_id)
+    
+    if request.method == "POST":
+        # Simpan pembelian
+        Purchase.objects.create(user=request.user, course=course)
+        return redirect('dashboard')  # Setelah checkout, arahkan ke dashboard
+    
     return render(request, 'course_checkout.html', {'course': course})

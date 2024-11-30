@@ -96,7 +96,91 @@
       </button>  <!-- Button sidebar -->
       <div class="content-dashboard p-4">
         <h1>Welcome to Your Dashboard!</h1>
-        <p>Select an option from the sidebar to navigate.</p>
+        <p>Your purchased items:</p>
+  
+        <h3>Mentors:</h3>
+        <div class="row ms-lg-3 mb-3">
+          {% for purchase in purchases %}
+            {% if purchase.mentor %}
+              <div class="col-lg-3 col-md-6 mt-3">
+                <div class="card h-100" style="width: 100%">
+                  <div class="image-zoom">
+                    <div class="image-zoom-wrapper">
+                      <img
+                        src="{{ purchase.mentor.image.url }}"
+                        class="card-img-top"
+                        alt="{{ purchase.mentor.name }}"
+                      />
+                    </div>
+                  </div>
+                  <div class="card-body d-flex flex-column text-center">
+                    <h5 class="card-title mb-3">{{ purchase.mentor.name }}</h5>
+                    <div
+                      class="mt-auto d-flex justify-content-between align-items-center"
+                    >
+                      <div class="rating d-flex align-items-center">
+                        <i class="bi bi-star-fill"></i>
+                        <span class="ms-1">{{ purchase.mentor.rating }}</span>
+                      </div>
+                      <a
+                        href="#"
+                        class="btn btn-brand"
+                        data-bs-toggle="modal"
+                        data-bs-target="#mentorModal{{ purchase.mentor.id }}"
+                        >Detail</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+          {% if not purchases|length %}
+            <p>No mentors purchased yet.</p>
+          {% endif %}
+        </div>
+
+        <h3>Courses:</h3>
+        <div class="row ms-lg-3 mb-3">
+          {% for purchase in purchases %}
+            {% if purchase.course %}
+              <div class="col-lg-3 col-md-6 mt-3">
+                <div class="card h-100" style="width: 100%">
+                  <div class="image-zoom">
+                    <div class="image-zoom-wrapper">
+                      <img
+                        src="{{ purchase.course.image.url }}"
+                        class="card-img-top"
+                        alt="{{ purchase.course.title }}"
+                      />
+                    </div>
+                  </div>
+                  <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ purchase.course.title }}</h5>
+                    <p class="card-text flex-grow-1">
+                      {{ purchase.course.description|truncatewords:20 }}
+                    </p>
+                    <div
+                      class="mt-auto d-flex justify-content-between align-items-center"
+                    >
+                      <div class="price">
+                        <span class="ml-2">IDR {{ purchase.course.price }}</span>
+                      </div>
+                      <a
+                        href="{% url 'course_detail' purchase.course.pk %}"
+                        class="btn btn-brand"
+                        >Detail</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+          {% if not purchases|length %}
+            <p>No courses purchased yet.</p>
+          {% endif %}
+        </div>
       </div>
     </main>
 </div>

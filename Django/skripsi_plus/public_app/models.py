@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 
 # Create your models here.
@@ -27,3 +28,16 @@ class Course(models.Model):
 
     def __str__(self):
         return self.title
+
+class Purchase(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    mentor = models.ForeignKey(Mentor, on_delete=models.SET_NULL, null=True, blank=True)
+    course = models.ForeignKey(Course, on_delete=models.SET_NULL, null=True, blank=True)
+    purchased_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        if self.mentor:
+            return f"Mentor: {self.mentor.title} by {self.user.username}"
+        elif self.course:
+            return f"Course: {self.course.title} by {self.user.username}"
+        return f"Purchase by {self.user.username}"
