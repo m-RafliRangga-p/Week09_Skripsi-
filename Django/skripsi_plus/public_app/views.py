@@ -85,3 +85,21 @@ def course_checkout(request, course_id):
         return redirect('dashboard')  # Setelah checkout, arahkan ke dashboard
     
     return render(request, 'course_checkout.html', {'course': course})
+
+@login_required(login_url='account_login')
+def dashboard_mentors(request):
+    purchases = Purchase.objects.filter(user=request.user)
+    return render(request, 'dashboard-mentors.html', {'purchases': purchases})
+
+@login_required(login_url='account_login')
+def dashboard_courses(request):
+    purchases = Purchase.objects.filter(user=request.user)
+    return render(request, 'dashboard-courses.html', {'purchases': purchases})
+
+@login_required
+def profile_view(request):
+    user = request.user
+    context = {
+        'user': user,
+    }
+    return render(request, 'profile.html', context)
