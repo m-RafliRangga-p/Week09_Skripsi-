@@ -1,0 +1,82 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+  <div class="row">
+    <!-- Mentor Details -->
+    <div class="col-lg-8">
+      <div class="image-container d-flex align-items-center justify-content-center">
+        <img src="{{ mentor.image.url }}" alt="{{ mentor.name }}" class="img-fluid" />
+      </div>
+
+      <div class="nama-dosen mt-5">
+        <h2>{{ mentor.name }}</h2>
+        <h5>{{ mentor.specialization }}</h5>
+      </div>
+
+      <div class="rating-dosen mt-5 d-flex justify-content-between align-items-center">
+        <div class="rating d-flex align-items-center">
+          <i class="bi bi-star-fill"></i>
+          <span class="ms-1">{{ mentor.rating }} / 5</span>
+        </div>
+        <div class="rating d-flex align-items-center">
+          <i class="ri-briefcase-4-fill"></i>
+          <span class="ms-1">{{ mentor.experience }} Years Experience</span>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="keterangan-dosen mt-5">
+        <h5>Get to Know</h5>
+        <p>{{ mentor.bio }}</p>
+
+        <h5>Educational Background</h5>
+        <ul>
+          {% for education in mentor.education.splitlines %}
+          <li>{{ education }}</li>
+          {% endfor %}
+        </ul>
+
+        <h5>Skills</h5>
+        <p>{{ mentor.skills }}</p>
+      </div>
+    </div>
+
+    <!-- Calendar for Booking -->
+    <div class="col-lg-4">
+      <h5>Book a Consultation</h5>
+      <form method="POST" class="mt-4">
+        {% csrf_token %}
+        <label for="date">Select Date:</label>
+        <input type="date" id="date" name="date" class="form-control mb-3" required>
+        
+        <label for="time">Select Time:</label>
+        <input type="time" id="time" name="time" class="form-control mb-3" required>
+        
+        <button type="submit" class="btn btn-primary mt-2">Book Now</button>
+      </form>
+      
+      {% if error %}
+        <p class="alert alert-danger mt-3">{{ error }}</p>
+      {% else %}
+        <p class="alert alert-success mt-3">Booking successful</p>
+      {% endif %}
+      
+      <h3 class="mt-5">Existing Bookings:</h3>
+      <ul>
+        {% for booking in bookings %}
+          <li>
+            {{ booking.user.username }} - {{ booking.date }} at {{ booking.time }}
+          </li>
+        {% empty %}
+          <p>No bookings yet.</p>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

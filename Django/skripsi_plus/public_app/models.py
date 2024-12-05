@@ -1,5 +1,7 @@
 from django.conf import settings
 from django.db import models
+from django.contrib.auth.models import User
+from datetime import datetime
 
 # Create your models here.
 class Mentor(models.Model):
@@ -41,3 +43,15 @@ class Purchase(models.Model):
         elif self.course:
             return f"Course: {self.course.title} by {self.user.username}"
         return f"Purchase by {self.user.username}"
+
+class Booking(models.Model):
+    mentor = models.ForeignKey(Mentor, on_delete=models.CASCADE, related_name="bookings")
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date = models.DateField()
+    time = models.TimeField()
+
+    def __str__(self):
+        return f"Booking by {self.user} with {self.mentor} on {self.date} at {self.time}"
+
+    class Meta:
+        unique_together = ('mentor', 'date', 'time')

@@ -16,5 +16,5 @@ urlpatterns = [
     path('dashboard-mentors/', views.dashboard_mentors, name='dashboard_mentors'),
     path('dashboard-courses/', views.dashboard_courses, name='dashboard_courses'),
     path('profile/', views.profile_view, name='profile'),
-
+    path('mentor/<int:pk>/', views.mentor_detail_view, name='mentor_detail'),
 ]

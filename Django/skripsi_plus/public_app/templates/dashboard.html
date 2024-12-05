@@ -123,10 +123,8 @@
                         <span class="ms-1">{{ purchase.mentor.rating }}</span>
                       </div>
                       <a
-                        href="#"
+                        href="{% url 'mentor_detail' purchase.mentor.id %}"
                         class="btn btn-brand"
-                        data-bs-toggle="modal"
-                        data-bs-target="#mentorModal{{ purchase.mentor.id }}"
                         >Detail</a
                       >
                     </div>

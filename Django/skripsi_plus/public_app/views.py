@@ -3,8 +3,10 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from .models import Mentor, Course, Purchase
+from .models import Mentor, Course, Purchase, Booking
 from django.db.models import Q
+from django.http import JsonResponse
+from datetime import datetime, date
 
 
 def home(request):
@@ -103,3 +105,41 @@ def profile_view(request):
         'user': user,
     }
     return render(request, 'profile.html', context)
+
+def mentor_detail_view(request, pk):
+    mentor = Mentor.objects.get(pk=pk)
+    bookings = mentor.bookings.all().order_by('date', 'time')  # Semua booking mentor, diurutkan
+    
+    if request.method == "POST":
+        date = request.POST.get("date")
+        time = request.POST.get("time")
+        
+        # Validasi booking
+        existing_bookings = mentor.bookings.filter(date=date)
+        if not validate_booking(existing_bookings, time):
+            return render(request, 'dashboard_detail_mentor.html', {
+                'mentor': mentor,
+                'bookings': bookings,
+                'error': 'Time slot unavailable. Please select another time.'
+            })
+        
+        # Buat booking baru
+        Booking.objects.create(
+            mentor=mentor,
+            user=request.user,
+            date=date,
+            time=time
+        )
+        return redirect('mentor_detail', pk=pk)
+
+    return render(request, 'dashboard_detail_mentor.html', {'mentor': mentor, 'bookings': bookings})
+
+# Fungsi validasi waktu booking
+def validate_booking(existing_bookings, new_time):
+    from datetime import datetime
+    new_time = datetime.strptime(new_time, '%H:%M').time()
+    for booking in existing_bookings:
+        existing_time = booking.time
+        if abs(datetime.combine(date.min, existing_time) - datetime.combine(date.min, new_time)).seconds < 3600:
+            return False  # Tidak valid jika beda waktu kurang dari 1 jam
+    return True
