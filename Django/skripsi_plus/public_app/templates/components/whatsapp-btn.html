@@ -1,0 +1,20 @@
+{% load static %}
+<a
+  href="https://wa.me/+6282334426352"
+  class="whatsapp-float"
+  target="_blank"
+  id="whatsappButton"
+>
+  <img src="{% static 'img/whatsapp-icon.png' %}" alt="WhatsApp" />
+</a>
+
+<script>
+  window.addEventListener("scroll", function () {
+    const whatsappButton = document.getElementById("whatsappButton");
+    if (window.scrollY > 100) { // Adjust the value as needed
+      whatsappButton.style.display = "block";
+    } else {
+      whatsappButton.style.display = "none";
+    }
+  });
+</script>

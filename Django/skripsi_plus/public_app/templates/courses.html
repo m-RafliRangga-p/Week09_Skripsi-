@@ -2,8 +2,6 @@
 
 {% load static %}
 
-{% block title %}Courses{% endblock %}
-
 {% block content %}
 <main class="mb-5">
   <div class="container mt-5">
@@ -72,5 +70,8 @@
       {% endfor %}
     </div>
   </div>
+
+  <!-- whatsapp button -->
+  {% include 'components/whatsapp-btn.html' %}
 </main>
 {% endblock %}

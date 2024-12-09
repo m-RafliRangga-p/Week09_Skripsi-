@@ -12,9 +12,6 @@
       type="image/x-icon"
     />
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="{% static 'css/style.css'%}" />
-
     <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -36,6 +33,9 @@
     <!-- Owl Carousel -->
     <link rel="stylesheet" href="{% static 'css/owl.theme.css'%}" />
     <link rel="stylesheet" href="{% static 'css/owl.carousel.css'%}" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css'%}" />
   </head>
   <body>
     <!-- NAVBAR -->
@@ -43,7 +43,7 @@
 
     <!-- Membuat bagian main dari website dengan beberapa section -->
     <main class="">{% block content %} {% endblock content %}</main>
-
+    
     <!-- FOOTER -->
     {% include 'components/footer.html' %}
 
