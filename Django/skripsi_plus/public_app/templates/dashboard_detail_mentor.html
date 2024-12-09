@@ -65,15 +65,28 @@
       {% endif %}
       
       <h3 class="mt-5">Existing Bookings:</h3>
-      <ul>
-        {% for booking in bookings %}
-          <li>
-            {{ booking.user.username }} - {{ booking.date }} at {{ booking.time }}
-          </li>
-        {% empty %}
-          <p>No bookings yet.</p>
-        {% endfor %}
-      </ul>
+      <table class="table table-striped table-bordered">
+        <thead class="table-info text-dark">
+          <tr>
+            <th scope="col">Nama User</th>
+            <th scope="col">Tanggal</th>
+            <th scope="col">Jam</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for booking in bookings %}
+            <tr>
+              <td>{{ booking.user.username }}</td>
+              <td>{{ booking.date }}</td>
+              <td>{{ booking.time }}</td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="3" class="text-center">No bookings yet.</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
