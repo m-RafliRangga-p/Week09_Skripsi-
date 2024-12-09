@@ -59,9 +59,9 @@
       </form>
       
       {% if error %}
-        <p class="alert alert-danger mt-3">{{ error }}</p>
+        <p class="alert alert-danger mt-3" id="alert-message">{{ error }}</p>
       {% else %}
-        <p class="alert alert-success mt-3">Booking successful</p>
+        <p class="alert alert-success mt-3" id="alert-message">Booking successful</p>
       {% endif %}
       
       <h3 class="mt-5">Existing Bookings:</h3>
@@ -91,5 +91,16 @@
   </div>
 </div>
 
+<script>
+  // Cek apakah ada alert dengan id "alert-message"
+  const alertMessage = document.getElementById('alert-message');
+  
+  if (alertMessage) {
+    // Menghapus alert setelah 10 detik
+    setTimeout(() => {
+      alertMessage.style.display = 'none';
+    }, 5000);  // 10000 milidetik = 10 detik
+  }
+</script>
 
 {% endblock %}

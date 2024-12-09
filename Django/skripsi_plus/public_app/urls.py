@@ -17,4 +17,5 @@ urlpatterns = [
     path('dashboard-courses/', views.dashboard_courses, name='dashboard_courses'),
     path('profile/', views.profile_view, name='profile'),
     path('mentor/<int:pk>/', views.mentor_detail_view, name='mentor_detail'),
+    path('profile/edit/', views.edit_profile_view, name='edit_profile'),
 ]

@@ -76,6 +76,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'public_app.middleware.EnsureProfileMiddleware',
 
     # django allauth
     'allauth.account.middleware.AccountMiddleware',

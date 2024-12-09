@@ -60,33 +60,29 @@
 
       {% if user.is_authenticated %}
       <div class="dropdown d-none d-lg-block">
-        <a
-          href="#"
-          class="d-flex align-items-center text-decoration-none dropdown-toggle user-icon"
+        <button
+          class="d-flex align-items-center text-decoration-none dropdown-toggle user-icon btn btn-outline-secondary"
           id="dropdownUser"
           data-bs-toggle="dropdown"
           aria-expanded="false"
-          style="color: #212529;"
-        >
-          <i 
-            class="bi bi-person-circle user-icon" 
-            style="font-size: 32px; color: #212529;" 
-            onmouseover="this.style.color='#33b5ff';"
-            onmouseout="this.style.color='#212529';"
-          ></i> <!-- Bootstrap User Icon -->
-        </a>
+          style="color: #212529; background: none; border-radius: 50px; border-width: 3px;">
+          
+          <span class="me-2">{{ user.username }}</span>
+          {% if user.profile.photo %}
+            <img src="{{ user.profile.photo.url }}" alt="User Photo" class="rounded-circle" style="width: 32px; height: 32px; object-fit: cover;">
+          {% else %}
+            <img src="{% static 'img/profil.png'%}" alt="User Photo" class="rounded-circle" style="width: 32px; height: 32px; object-fit: cover;">
+          {% endif %}
+          
+          
+        </button>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser">
-          <li>
-            <a class="dropdown-item" href="{% url 'dashboard' %}">Dashboard</a>
-          </li>
-          <li>
-            <hr class="dropdown-divider" />
-          </li>
-          <li>
-            <a class="dropdown-item text-danger" href="{% url 'account_logout' %}">Logout</a>
-          </li>
+          <li><a class="dropdown-item" href="{% url 'dashboard' %}">Dashboard</a></li>
+          <li><hr class="dropdown-divider" /></li>
+          <li><a class="dropdown-item text-danger" href="{% url 'account_logout' %}">Logout</a></li>
         </ul>
       </div>
+      
 
       <!-- Mobile and Tablet Buttons -->
       <div class="d-lg-none">

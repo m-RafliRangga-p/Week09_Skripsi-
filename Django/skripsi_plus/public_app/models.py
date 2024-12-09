@@ -55,3 +55,12 @@ class Booking(models.Model):
 
     class Meta:
         unique_together = ('mentor', 'date', 'time')
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    phone = models.CharField(max_length=15, blank=True, null=True)
+    domicile = models.CharField(max_length=100, blank=True, null=True)
+    photo = models.ImageField(upload_to='profile_photos/', blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.user.username}'s Profile"

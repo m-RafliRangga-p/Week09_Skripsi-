@@ -7,6 +7,7 @@ from .models import Mentor, Course, Purchase, Booking
 from django.db.models import Q
 from django.http import JsonResponse
 from datetime import datetime, date
+from .forms import ProfileForm
 
 
 def home(request):
@@ -100,11 +101,24 @@ def dashboard_courses(request):
 
 @login_required
 def profile_view(request):
-    user = request.user
-    context = {
-        'user': user,
-    }
-    return render(request, 'profile.html', context)
+    if not request.user.is_authenticated:
+        return redirect('account_login')
+
+    # Ambil atau buat profil pengguna
+    try:
+        profile = request.user.profile
+    except Profile.DoesNotExist:
+        profile = Profile.objects.create(user=request.user)
+
+    if request.method == "POST":
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')  # Redirect ke halaman profil setelah sukses
+    else:
+        form = ProfileForm(instance=profile)
+
+    return render(request, 'profile.html', {'form': form, 'user': request.user})
 
 def mentor_detail_view(request, pk):
     mentor = Mentor.objects.get(pk=pk)
@@ -143,3 +157,15 @@ def validate_booking(existing_bookings, new_time):
         if abs(datetime.combine(date.min, existing_time) - datetime.combine(date.min, new_time)).seconds < 3600:
             return False  # Tidak valid jika beda waktu kurang dari 1 jam
     return True
+
+@login_required
+def edit_profile_view(request):
+    profile = request.user.profile
+    if request.method == "POST":
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = ProfileForm(instance=profile)
+    return render(request, 'edit_profile.html', {'form': form})
