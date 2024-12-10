@@ -1,0 +1,76 @@
+{% extends 'layouts/base.html' %} {% load static %} {% block content %}
+<div>
+  <div class="container mt-5 mb-5">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="display-4">{{ course.title }}</h1>
+      </div>
+    </div>
+
+    <div class="detail-icon d-lg-flex align-items-center mt-2">
+      <div class="rating d-flex align-items-center">
+        <i class="ri-team-fill detail"></i>
+        <span class="ms-1">{{ course.students_enrolled }} Siswa Terdaftar</span>
+      </div>
+      <div class="rating d-flex align-items-center ms-lg-5">
+        <i class="bi bi-star-fill detail"></i>
+        <span class="ms-1">{{ course.rating }}</span>
+      </div>
+      <div class="rating d-flex align-items-center ms-lg-5">
+        <i class="ri-global-fill detail"></i>
+        <span class="ms-1">{{ course.learning_type }}</span>
+      </div>
+    </div>
+
+    <div class="deskripsi-course p-4 mt-3">
+      <h3>Deskripsi</h3>
+      <p>{{ course.description }}</p>
+    </div>
+
+    <div class="accordion-detail mt-3 p-4">
+      <h3>Silabus</h3>
+      <hr class="accordion mt-4" />
+      {% for section in course.syllabus %}
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="heading{{ forloop.counter }}">
+          <button
+            class="accordion-button"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapse{{ forloop.counter }}"
+            aria-expanded="true"
+            aria-controls="collapse{{ forloop.counter }}"
+          >
+            {{ section.title }}
+          </button>
+        </h2>
+        <div
+          id="collapse{{ forloop.counter }}"
+          class="accordion-collapse collapse {% if forloop.first %}show{% endif %}"
+          aria-labelledby="heading{{ forloop.counter }}"
+          data-bs-parent="#syllabusAccordion"
+        >
+          <div class="accordion-body">
+            {% for lesson in section.lessons %}
+                <div class="d-flex align-items-center ms-2">
+                    <i class="ri-lock-unlock-fill bag"></i>
+                    <a class="ms-1" href="{% url 'lesson_detail' course.id forloop.parentloop.counter0 forloop.counter0 %}">
+                    {{ lesson.title }}
+                    </a>
+                    <i class="ri-arrow-right-s-line detail ms-1"></i>
+                </div>              
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="btn-detail mt-5 d-flex justify-content-end">
+      <a href="/dashboard-courses"
+        ><button type="button" class="btn btn-danger">Back</button></a
+      >
+    </div>
+  </div>
+</div>
+{% endblock content %}

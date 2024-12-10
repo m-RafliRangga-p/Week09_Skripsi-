@@ -104,7 +104,7 @@ span {
 
 /* Membuat style standar untuk button brand yang akan digunakan pada halaman website */
 .btn{
-    font-weight: 600;
+    font-weight: 500;
     font-size: 14px;
     text-transform: uppercase;
     border-radius: 6px !important;
@@ -724,7 +724,7 @@ footer .line{
     text-align: justify;
 }
 
-.deskripsi-course,.accordion-detail {
+.deskripsi-course,.accordion-detail, .detail-materi {
     background-color: #d5f0ff;
     border-radius: 10px;
 }
@@ -839,3 +839,23 @@ footer .line{
     height: 100%;
     border-radius: 50px;
 }
+
+.video-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px; /* Maksimal lebar video */
+    height: 350px; /* Tinggi maksimum video */
+    margin: 0 auto;
+    overflow: hidden; /* Potong bagian yang melebihi container */
+  }
+  
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+  
+  

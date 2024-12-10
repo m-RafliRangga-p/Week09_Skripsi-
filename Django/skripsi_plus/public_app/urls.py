@@ -10,6 +10,8 @@ urlpatterns = [
 
     # harus login
     path('courses/<int:pk>/', views.course_detail, name='course_detail'),
+    path('dashboard-courses/<int:pk>/', views.course_bought, name='course_bought'),
+    path("dashboard-courses/<int:course_id>/lesson/<int:section_index>/<int:lesson_index>/", views.lesson_detail, name="lesson_detail"),
     path('dashboard/', views.dashboard, name='dashboard'),
     path('checkout/mentor/<int:mentor_id>/', views.mentor_checkout, name='mentor_checkout'),
     path('course/<int:course_id>/checkout/', views.course_checkout, name='course_checkout'),

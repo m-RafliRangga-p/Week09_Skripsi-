@@ -1,0 +1,26 @@
+{% extends 'layouts/base.html' %} {% load static %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+  <h1 class="text-center">{{ lesson.title }}</h1>
+
+  <div class="mt-4">
+    <div class="video-container">
+      <iframe
+        class="embed-responsive-item"
+        src="{{ lesson.content.video_url }}"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+
+  <div class="mt-4 detail-materi p-3">
+    <h3>Materi</h3>
+    <p>{{ lesson.content.text }}</p>
+  </div>
+
+  <div class="mt-5">
+    <a href="{% url 'course_bought' course.id %}" ><button class="btn btn-danger">Back to Course</button> </a>
+  </div>
+</div>
+{% endblock %}

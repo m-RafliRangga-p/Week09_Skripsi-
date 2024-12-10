@@ -5,9 +5,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import Mentor, Course, Purchase, Booking
 from django.db.models import Q
-from django.http import JsonResponse
+from django.http import JsonResponse, Http404
 from datetime import datetime, date
 from .forms import ProfileForm
+import json
 
 
 def home(request):
@@ -169,3 +170,24 @@ def edit_profile_view(request):
     else:
         form = ProfileForm(instance=profile)
     return render(request, 'edit_profile.html', {'form': form})
+
+@login_required(login_url='account_login')
+def course_bought(request, pk):
+    course = get_object_or_404(Course, pk=pk)
+    return render(request, 'courses_bought.html', {'course': course})
+
+def lesson_detail(request, course_id, section_index, lesson_index):
+    course = get_object_or_404(Course, id=course_id)
+    syllabus = course.syllabus
+
+    try:
+        section = syllabus[section_index]
+        lesson = section["lessons"][lesson_index]
+    except IndexError:
+        raise Http404("Lesson not found.")
+
+    context = {
+        "course": course,
+        "lesson": lesson,
+    }
+    return render(request, "lesson.html", context)
