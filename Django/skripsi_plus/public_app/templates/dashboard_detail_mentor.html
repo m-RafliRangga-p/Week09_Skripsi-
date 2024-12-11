@@ -78,7 +78,7 @@
             <tr>
               <td>{{ booking.user.username }}</td>
               <td>{{ booking.date }}</td>
-              <td>{{ booking.time }}</td>
+              <td>{{ booking.time|time:"H:i" }} WIB</td>
             </tr>
           {% empty %}
             <tr>

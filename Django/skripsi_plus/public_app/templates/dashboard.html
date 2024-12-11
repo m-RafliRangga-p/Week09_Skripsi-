@@ -96,31 +96,34 @@
       <!-- Mentors Section -->
       <div class="mb-5">
         <h3>Your Mentor Bookings:</h3>
-        <div class="row">
+        <div class="row ms-lg-3">
           {% for booking in bookings %}
-          <div class="col-md-4 mb-4">
+          <div class="col-lg-3 col-md-6 mt-3">
             <div class="card h-100">
               {% if booking.mentor.image %}
-              <img
-                src="{{ booking.mentor.image.url }}"
-                class="card-img-top"
-                alt="{{ booking.mentor.name }}"
-              />
+              <div class="image-zoom">
+                <div class="image-zoom-wrapper">
+                  <img
+                    src="{{ booking.mentor.image.url }}"
+                    class="card-img-top"
+                    alt="{{ booking.mentor.name }}"
+                  />
+                </div>
+              </div>
               {% endif %}
-              <div class="card-body">
+              <div class="card-body d-flex flex-column">
                 <h5 class="card-title">{{ booking.mentor.name }}</h5>
                 <p class="card-text">
                   <i class="bi bi-calendar"></i>
                   {{ booking.date|date:"l, d F Y" }}
                 </p>
-                <p class="card-text">
+                <p class="card-text flex-grow-1">
                   <i class="bi bi-clock"></i>
-                  {{ booking.time|time:"H:i" }}
+                  {{ booking.time|time:"H:i" }} WIB
                 </p>
                 <a
                   href="{% url 'mentor_detail' booking.mentor.id %}"
-                  class="btn btn-primary"
-                  >View Details</a
+                  ><button class="btn btn-primary">View Details</button></a
                 >
               </div>
             </div>
