@@ -68,7 +68,13 @@ def course_detail(request, pk):
 @login_required(login_url='account_login')
 def dashboard(request):
     purchases = Purchase.objects.filter(user=request.user)
-    return render(request, 'dashboard.html', {'purchases': purchases})
+    bookings = Booking.objects.filter(user=request.user)
+
+    context = {
+        'purchases': purchases,
+        'bookings': bookings
+    }
+    return render(request, 'dashboard.html', context)
 
 def mentor_checkout(request, mentor_id):
     mentor = get_object_or_404(Mentor, id=mentor_id)

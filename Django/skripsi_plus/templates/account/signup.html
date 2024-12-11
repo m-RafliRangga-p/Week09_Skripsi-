@@ -10,6 +10,16 @@
           </h2>
         </div>
         <div class="card-body">
+          {% if form.errors %}
+            {% if form.non_field_errors %}
+              {% for error in form.non_field_errors %}
+                <div class="alert alert-danger">
+                  {{ error }}
+                </div>
+              {% endfor %}
+            {% endif %}
+          {% endif %}
+
           <form action="{% url 'account_signup' %}" method="post">
             {{ form.non_field.errors | safe }}
             {% csrf_token %}
@@ -26,9 +36,17 @@
               {% else %}
                 {{ field|add_class:"form-control" }}
               {% endif %}
+              <!-- Field-specific errors -->
+              {% if field.errors %}
+                {% for error in field.errors %}
+                  <div class="text-danger small mt-1">
+                    {{ error }}
+                  </div>
+                {% endfor %}
+              {% endif %}
             </div>
             {% endfor %}
-            <button type="submit" class="btn btn-primary w-100">Register</button>
+            <button type="submit" class="btn btn-primary w-100">Daftar</button>
           </form>
 
           <p class="text-center mt-3">
