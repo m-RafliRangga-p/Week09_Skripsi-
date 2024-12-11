@@ -1,0 +1,107 @@
+<!-- Offcanvas Sidebar (Untuk layar kecil) -->
+<div
+class="offcanvas offcanvas-start bg-light d-md-none"
+tabindex="-1"
+id="sidebarOffcanvas"
+aria-labelledby="sidebarOffcanvasLabel"
+style="width: 250px"
+>
+<!-- Header Sidebar -->
+<div class="offcanvas-header">
+  <h5 class="offcanvas-title" id="sidebarOffcanvasLabel">Menu</h5>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="offcanvas"
+    aria-label="Close"
+  ></button>
+</div>
+
+<!-- Body Sidebar -->
+<div class="offcanvas-body p-3">
+  <ul class="nav flex-column">
+    <li class="nav-item">
+      <a class="nav-link active" href="{% url 'dashboard' %}">
+        <i class="bi bi-house-door-fill"></i> Dashboard
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'dashboard_mentors' %}">
+        <i class="bi bi-people-fill"></i> Mentors
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'dashboard_courses' %}">
+        <i class="bi bi-journal-bookmark-fill"></i> Courses
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'profile' %}">
+        <i class="bi bi-person-circle"></i> Profile
+      </a>
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link text-danger"
+        href="#"
+        data-bs-toggle="modal"
+        data-bs-target="#logoutModal"
+      >
+        <i class="bi bi-box-arrow-right"></i> Logout
+      </a>
+    </li>
+  </ul>
+</div>
+</div>
+
+<!-- Sidebar Biasa (Untuk layar besar) -->
+<nav
+class="sidebar bg-light p-3 d-none d-md-block"
+id="sidebar"
+style="min-width: 250px; transition: transform 0.3s ease-in-out"
+>
+<ul class="nav flex-column">
+  <li class="nav-item">
+    <a
+      class="nav-link {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}"
+      href="{% url 'dashboard' %}"
+    >
+      <i class="bi bi-house-door-fill"></i> Dashboard
+    </a>
+  </li>
+  <li class="nav-item">
+    <a
+      class="nav-link {% if request.resolver_match.url_name == 'dashboard_mentors' %}active{% endif %}"
+      href="{% url 'dashboard_mentors' %}"
+    >
+      <i class="bi bi-people-fill"></i> Mentors
+    </a>
+  </li>
+  <li class="nav-item">
+    <a
+      class="nav-link {% if request.resolver_match.url_name == 'dashboard_courses' %}active{% endif %}"
+      href="{% url 'dashboard_courses' %}"
+    >
+      <i class="bi bi-journal-bookmark-fill"></i> Courses
+    </a>
+  </li>
+  <li class="nav-item">
+    <a
+      class="nav-link {% if request.resolver_match.url_name == 'profile' %}active{% endif %}"
+      href="{% url 'profile' %}"
+    >
+      <i class="bi bi-person-circle"></i> Profile
+    </a>
+  </li>
+  <li class="nav-item">
+    <a
+      class="nav-link text-danger"
+      href="#"
+      data-bs-toggle="modal"
+      data-bs-target="#logoutModal"
+    >
+      <i class="bi bi-box-arrow-right"></i> Logout
+    </a>
+  </li>
+</ul>
+</nav>

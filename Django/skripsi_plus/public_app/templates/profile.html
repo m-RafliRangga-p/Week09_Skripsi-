@@ -1,150 +1,93 @@
 {% extends 'layouts/base.html' %} {% block content %}
 <div class="d-flex">
-    <!-- Offcanvas Sidebar (Untuk layar kecil) -->
-    <div
-    class="offcanvas offcanvas-start bg-light d-md-none"
-    tabindex="-1"
-    id="sidebarOffcanvas"
-    aria-labelledby="sidebarOffcanvasLabel"
-    style="width: 250px;"
+  <!-- Sidebar -->
+  {% include 'components/sidebar.html' %}
+
+  <!-- Tombol Toggle Sidebar (Untuk layar kecil) -->
+  <!-- Main Content -->
+  <main class="flex-grow-1 mt-2">
+    <button
+      class="btn btn-brand d-md-none"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#sidebarOffcanvas"
+      aria-controls="sidebarOffcanvas"
     >
-    <!-- Header Sidebar -->
-    <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="sidebarOffcanvasLabel">Menu</h5>
-      <button
-        type="button"
-        class="btn-close"
-        data-bs-dismiss="offcanvas"
-        aria-label="Close"
-      ></button>
-    </div>
-
-    <!-- Body Sidebar -->
-    <div class="offcanvas-body p-3">
-      <ul class="nav flex-column">
-        <li class="nav-item">
-          <a class="nav-link active" href="{% url 'dashboard' %}">
-            <i class="bi bi-house-door-fill"></i> Dashboard
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'dashboard_mentors' %}">
-            <i class="bi bi-people-fill"></i> Mentors
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'dashboard_courses' %}">
-            <i class="bi bi-journal-bookmark-fill"></i> Courses
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'profile' %}">
-            <i class="bi bi-person-circle"></i> Profile
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-danger" href="{% url 'account_logout' %}">
-            <i class="bi bi-box-arrow-right"></i> Logout
-          </a>
-        </li>
-      </ul>
-    </div>
-    </div>
-
-    <!-- Sidebar Biasa (Untuk layar besar) -->
-    <nav class="sidebar bg-light p-3 d-none d-md-block" id="sidebar" style="min-width: 250px; transition: transform 0.3s ease-in-out;">
-        <ul class="nav flex-column">
-        <li class="nav-item">
-            <a class="nav-link {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}" href="{% url 'dashboard' %}">
-            <i class="bi bi-house-door-fill"></i> Dashboard
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link {% if request.resolver_match.url_name == 'dashboard_mentors' %}active{% endif %}" href="{% url 'dashboard_mentors' %}">
-            <i class="bi bi-people-fill"></i> Mentors
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link {% if request.resolver_match.url_name == 'dashboard_courses' %}active{% endif %}" href="{% url 'dashboard_courses' %}">
-            <i class="bi bi-journal-bookmark-fill"></i> Courses
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link {% if request.resolver_match.url_name == 'profile' %}active{% endif %}" href="{% url 'profile' %}">
-            <i class="bi bi-person-circle"></i> Profile
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-danger" href="{% url 'account_logout' %}">
-            <i class="bi bi-box-arrow-right"></i> Logout
-            </a>
-        </li>
-        </ul>
-    </nav>
-
-    <!-- Tombol Toggle Sidebar (Untuk layar kecil) -->
-    <!-- Main Content -->
-    <main class="flex-grow-1 mt-2">
-      <button
-        class="btn btn-brand d-md-none"
-        type="button"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#sidebarOffcanvas"
-        aria-controls="sidebarOffcanvas"
-      >
-        <i class="bi bi-list"></i>
-      </button>
-      <!-- Button sidebar -->
-      <div class="content-dashboard p-4">
-        <h1 class="mb-4">Profile</h1>
-        <div class="card">
-          <div class="card-body">
-            <div class="d-flex align-items-center mb-5">
-              <div class="me-3">
-                {% if user.profile.photo %}
-                  <img
-                    src="{{ user.profile.photo.url }}"
-                    alt="Profile Picture"
-                    class="rounded-circle"
-                    style="width: 100px; height: 100px; object-fit: cover;"
-                  />
-                {% else %}
-                  <i class="bi bi-person-circle" style="font-size: 100px;"></i>
-                {% endif %}
-              </div>
-              <h5 class="card-title">Hello, {{ user.username }}!</h5>
-              <a href="{% url 'edit_profile' %}" class="ms-auto btn btn-brand">
-                <i class="bi bi-pencil-square"></i> Edit
-              </a>
+      <i class="bi bi-list"></i>
+    </button>
+    <!-- Button sidebar -->
+    <div class="content-dashboard p-4">
+      <h1 class="mb-4">Profile</h1>
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex align-items-center mb-5">
+            <div class="me-3">
+              {% if user.profile.photo %}
+              <img
+                src="{{ user.profile.photo.url }}"
+                alt="Profile Picture"
+                class="rounded-circle"
+                style="width: 100px; height: 100px; object-fit: cover"
+              />
+              {% else %}
+              <i class="bi bi-person-circle" style="font-size: 100px"></i>
+              {% endif %}
             </div>
-            <!-- Email (Read-only) -->
-            <div class="mb-3">
-              <label class="form-label fw-bold text-dark">Email</label>
-              <input type="email" class="form-control" value="{{ user.email }}" disabled>
-            </div>
+            <h5 class="card-title">Hello, {{ user.username }}!</h5>
+            <a href="{% url 'edit_profile' %}" class="ms-auto btn btn-brand">
+              <i class="bi bi-pencil-square"></i> Edit
+            </a>
+          </div>
+          <!-- Email (Read-only) -->
+          <div class="mb-3">
+            <label class="form-label fw-bold text-dark">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              value="{{ user.email }}"
+              disabled
+            />
+          </div>
 
-            <!-- Phone (Read-only) -->
-            <div class="mb-3">
-                <label class="form-label fw-bold text-dark">Phone</label>
-                <input type="text" class="form-control" value="{{ user.profile.phone }}" disabled>
-            </div>
+          <!-- Phone (Read-only) -->
+          <div class="mb-3">
+            <label class="form-label fw-bold text-dark">Phone</label>
+            <input
+              type="text"
+              class="form-control"
+              value="{{ user.profile.phone }}"
+              disabled
+            />
+          </div>
 
-            <!-- Domicile (Read-only) -->
-            <div class="mb-3">
-                <label class="form-label fw-bold text-dark">Domicile</label>
-                <input type="text" class="form-control" value="{{ user.profile.domicile }}" disabled>
-            </div>
-            <div class="mt-3">
-              <a href="{% url 'account_change_password' %}">
-                <button type="button" class="btn btn-primary">Change Password</button>
-              </a>
-              <a href="{% url 'account_logout' %}">
-                <button type="button" class="btn btn-danger">Logout</button>
-              </a>
-            </div>
+          <!-- Domicile (Read-only) -->
+          <div class="mb-3">
+            <label class="form-label fw-bold text-dark">Domicile</label>
+            <input
+              type="text"
+              class="form-control"
+              value="{{ user.profile.domicile }}"
+              disabled
+            />
+          </div>
+          <div class="mt-3">
+            <a href="{% url 'account_change_password' %}">
+              <button type="button" class="btn btn-primary">
+                Change Password
+              </button>
+            </a>
+            <a
+              class="btn btn-danger"
+              href="#"
+              data-bs-toggle="modal"
+              data-bs-target="#logoutModal"
+            >
+              Logout
+            </a>
           </div>
         </div>
       </div>
-    </main>
+    </div>
+  </main>
 </div>
 {% endblock content %}
