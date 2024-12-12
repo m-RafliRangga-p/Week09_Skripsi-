@@ -99,7 +99,13 @@ def course_checkout(request, course_id):
 @login_required(login_url='account_login')
 def dashboard_mentors(request):
     purchases = Purchase.objects.filter(user=request.user)
-    return render(request, 'dashboard-mentors.html', {'purchases': purchases})
+    bookings = Booking.objects.filter(user=request.user)
+
+    context = {
+        'purchases': purchases,
+        'bookings': bookings
+    }
+    return render(request, 'dashboard-mentors.html', context)
 
 @login_required(login_url='account_login')
 def dashboard_courses(request):
@@ -197,3 +203,8 @@ def lesson_detail(request, course_id, section_index, lesson_index):
         "lesson": lesson,
     }
     return render(request, "lesson.html", context)
+
+def detail_booking(request, booking_id):
+    # Ambil data booking berdasarkan ID
+    booking = get_object_or_404(Booking, id=booking_id)
+    return render(request, 'detail_booking.html', {'booking': booking})

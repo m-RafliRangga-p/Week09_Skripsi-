@@ -20,4 +20,5 @@ urlpatterns = [
     path('profile/', views.profile_view, name='profile'),
     path('mentor/<int:pk>/', views.mentor_detail_view, name='mentor_detail'),
     path('profile/edit/', views.edit_profile_view, name='edit_profile'),
+    path('booking/<int:booking_id>/', views.detail_booking, name='detail_booking'),
 ]

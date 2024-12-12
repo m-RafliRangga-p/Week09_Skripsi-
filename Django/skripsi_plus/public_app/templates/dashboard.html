@@ -21,7 +21,7 @@
       <p>Your purchased items:</p>
 
       <h3>Mentors:</h3>
-      <div class="row ms-lg-3 mb-3">
+      <div class="row ms-lg-3 mb-5">
         {% for purchase in purchases %} {% if purchase.mentor %}
         <div class="col-lg-3 col-md-6 mt-3">
           <div class="card h-100" style="width: 100%">
@@ -58,7 +58,7 @@
       </div>
 
       <h3>Courses:</h3>
-      <div class="row ms-lg-3 mb-3">
+      <div class="row ms-lg-3 mb-5">
         {% for purchase in purchases %} {% if purchase.course %}
         <div class="col-lg-3 col-md-6 mt-3">
           <div class="card h-100" style="width: 100%">
@@ -95,7 +95,7 @@
 
       <!-- Mentors Section -->
       <div class="mb-5">
-        <h3>Your Mentor Bookings:</h3>
+        <h3>Your Mentoring Schedules:</h3>
         <div class="row ms-lg-3">
           {% for booking in bookings %}
           <div class="col-lg-3 col-md-6 mt-3">
@@ -122,8 +122,8 @@
                   {{ booking.time|time:"H:i" }} WIB
                 </p>
                 <a
-                  href="{% url 'mentor_detail' booking.mentor.id %}"
-                  ><button class="btn btn-primary">View Details</button></a
+                  href="{% url 'detail_booking' booking.id %}"
+                  ><button class="btn btn-brand">View Details</button></a
                 >
               </div>
             </div>

@@ -1,0 +1,38 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+ <div class="row">
+    <div class="col-lg-8">
+        <div class="image-container d-flex align-items-center justify-content-center">
+          <img src="{{ booking.mentor.image.url }}" alt="{{ mentor.name }}" class="img-fluid" />
+        </div>
+    </div>
+    <div class="col-4">
+        <h1>{{ booking.mentor.name }}</h1>
+        <h5>{{ booking.mentor.specialization }}</h5>
+        <hr />
+        <form>
+            <div class="mb-3">
+              <label for="date" class="form-label text-dark"><strong>Date:</strong></label>
+              <input type="text" id="date" class="form-control" value="{{ booking.date|date:"l, d F Y" }}" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="time" class="form-label text-dark"><strong>Time:</strong></label>
+              <input type="text" id="time" class="form-control" value="{{ booking.time|time:"H:i" }} WIB" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="zoom-link" class="form-label text-dark"><strong>Zoom Link:</strong></label>
+                {% if booking.zoom_link %}
+                <a href="{{ booking.zoom_link }}" target="_blank" class="form-control text-decoration-none">{{ booking.zoom_link }}</a>
+                {% else %}
+                <input type="text" id="zoom-link" class="form-control" value="Not provided" readonly>
+                {% endif %}
+              </div>
+          </form>
+          <a href="{% url 'dashboard_mentors' %}"><button class="btn btn-danger">Back</button></a>
+    </div>
+ </div>
+</div>
+{% endblock %}

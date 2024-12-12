@@ -20,7 +20,7 @@
       <h1>Welcome to Your Dashboard!</h1>
 
       <h3>Mentors:</h3>
-      <div class="row ms-lg-3 mb-3">
+      <div class="row ms-lg-3 mb-5">
         {% for purchase in purchases %} {% if purchase.mentor %}
         <div class="col-lg-3 col-md-6 mt-3">
           <div class="card h-100" style="width: 100%">
@@ -54,6 +54,49 @@
         {% endif %} {% endfor %} {% if not purchases|length %}
         <p>No mentors purchased yet.</p>
         {% endif %}
+      </div>
+
+      <!-- Mentors Section -->
+      <div class="mb-5">
+        <h3>Your Mentoring Schedules:</h3>
+        <div class="row ms-lg-3">
+          {% for booking in bookings %}
+          <div class="col-lg-3 col-md-6 mt-3">
+            <div class="card h-100">
+              {% if booking.mentor.image %}
+              <div class="image-zoom">
+                <div class="image-zoom-wrapper">
+                  <img
+                    src="{{ booking.mentor.image.url }}"
+                    class="card-img-top"
+                    alt="{{ booking.mentor.name }}"
+                  />
+                </div>
+              </div>
+              {% endif %}
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">{{ booking.mentor.name }}</h5>
+                <p class="card-text">
+                  <i class="bi bi-calendar"></i>
+                  {{ booking.date|date:"l, d F Y" }}
+                </p>
+                <p class="card-text flex-grow-1">
+                  <i class="bi bi-clock"></i>
+                  {{ booking.time|time:"H:i" }} WIB
+                </p>
+                <a
+                  href="{% url 'detail_booking' booking.id %}"
+                  ><button class="btn btn-brand">View Details</button></a
+                >
+              </div>
+            </div>
+          </div>
+          {% empty %}
+          <div class="col">
+            <p>You haven't booked any mentors yet.</p>
+          </div>
+          {% endfor %}
+        </div>
       </div>
     </div>
   </main>
