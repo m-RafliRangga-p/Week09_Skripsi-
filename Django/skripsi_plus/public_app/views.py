@@ -158,7 +158,7 @@ def mentor_detail_view(request, pk):
             date=date,
             time=time,
             payment_image=payment_image,
-            status='PENDING'
+            payment_status='PENDING'
         )
         return redirect('mentor_detail', pk=pk)
 
