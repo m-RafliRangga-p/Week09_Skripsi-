@@ -51,6 +51,8 @@ class Booking(models.Model):
     date = models.DateField()
     time = models.TimeField()
     zoom_link = models.URLField(max_length=200, blank=True, null=True)
+    payment_image = models.ImageField(upload_to='payment_images/', blank=True, null=True)
+    payment_status = models.CharField(max_length=20, choices=[('PENDING', 'Pending'), ('PAID', 'Paid')], default='PENDING')
 
     def __str__(self):
         return f"Booking by {self.user} with {self.mentor} on {self.date} at {self.time}"

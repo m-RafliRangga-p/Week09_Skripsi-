@@ -140,6 +140,7 @@ def mentor_detail_view(request, pk):
     if request.method == "POST":
         date = request.POST.get("date")
         time = request.POST.get("time")
+        payment_image = request.FILES.get("payment_image")
         
         # Validasi booking
         existing_bookings = mentor.bookings.filter(date=date)
@@ -155,7 +156,9 @@ def mentor_detail_view(request, pk):
             mentor=mentor,
             user=request.user,
             date=date,
-            time=time
+            time=time,
+            payment_image=payment_image,
+            status='PENDING'
         )
         return redirect('mentor_detail', pk=pk)
 

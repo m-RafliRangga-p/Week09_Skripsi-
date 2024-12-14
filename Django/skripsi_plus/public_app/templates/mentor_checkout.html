@@ -12,9 +12,15 @@
       <p class="text-muted">{{ mentor.specialization }}</p>
       <p>{{ mentor.bio }}</p>
       <h3>Price: <span class="text-success">Rp{{ mentor.price }}</span></h3>
-      <form method="POST">
+      <form method="POST" enctype="multipart/form-data">  <!-- Add enctype attribute -->
         {% csrf_token %}
         <div class="mt-4">
+          <h5>Transfer to the following bank account:</h5>
+          <p>Bank Name: XYZ Bank</p>
+          <p>Account Number: 123456789</p>
+          <p>Account Name: Educourse Payment</p>
+          <label for="payment_proof">Upload Payment Proof:</label>
+          <input type="file" id="payment_proof" name="payment_proof" class="form-control mb-3" required>  <!-- Add this line -->
           <a href="/mentors/"><button type="button" class="btn btn-outline-danger">Back</button></a>
           <button type="submit" class="btn btn-brand">Checkout</button>
         </div>

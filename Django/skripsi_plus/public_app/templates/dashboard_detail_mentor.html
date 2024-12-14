@@ -67,26 +67,40 @@
       <h3 class="mt-5">Existing Bookings:</h3>
       <table class="table table-striped table-bordered">
         <thead class="table-info text-dark">
-          <tr>
-            <th scope="col">Nama User</th>
-            <th scope="col">Tanggal</th>
-            <th scope="col">Jam</th>
-          </tr>
+            <tr>
+                <th scope="col">Nama User</th>
+                <th scope="col">Tanggal</th>
+                <th scope="col">Jam</th>
+                <th scope="col">Status</th>  <!-- Add this line -->
+            </tr>
         </thead>
         <tbody>
-          {% for booking in bookings %}
-            <tr>
-              <td>{{ booking.user.username }}</td>
-              <td>{{ booking.date }}</td>
-              <td>{{ booking.time|time:"H:i" }} WIB</td>
-            </tr>
-          {% empty %}
-            <tr>
-              <td colspan="3" class="text-center">No bookings yet.</td>
-            </tr>
-          {% endfor %}
+            {% for booking in bookings %}
+                <tr>
+                    <td>{{ booking.user.username }}</td>
+                    <td>{{ booking.date }}</td>
+                    <td>{{ booking.time|time:"H:i" }} WIB</td>
+                    <td>
+                      <span class="badge 
+                        {% if booking.payment_status == 'PAID' %}
+                          bg-success
+                        {% elif booking.payment_status == 'PENDING' %}
+                          bg-warning
+                        {% else %}
+                          bg-secondary
+                        {% endif %}
+                      ">
+                        {{ booking.payment_status }}
+                      </span>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4" class="text-center">No bookings yet.</td>  
+                </tr>
+            {% endfor %}
         </tbody>
-      </table>
+    </table>
     </div>
   </div>
 </div>
