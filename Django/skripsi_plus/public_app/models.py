@@ -40,7 +40,7 @@ class Purchase(models.Model):
 
     def __str__(self):
         if self.mentor:
-            return f"Mentor: {self.mentor.title} by {self.user.username}"
+            return f"Mentor: {self.mentor.name} by {self.user.username}"
         elif self.course:
             return f"Course: {self.course.title} by {self.user.username}"
         return f"Purchase by {self.user.username}"
